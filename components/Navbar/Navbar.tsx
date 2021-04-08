@@ -11,13 +11,13 @@ const Navbar = () => {
             style={{ height: "115px", minHeight: "115px" }}
         >
             <div className="flex items-center">
-                <Link href="/">
+                <BaseLink href="/">
                     <a
                         className={`text-4xl font-black transition-opacity bg-clip-text ${style["yellow-title"]} hover:opacity-60`}
                     >
                         MyMoj.is
                     </a>
-                </Link>
+                </BaseLink>
             </div>
             <div className="flex items-center">
                 <BaseLink href="/claim">
@@ -27,21 +27,14 @@ const Navbar = () => {
                         Claim
                     </a>
                 </BaseLink>
-                <Link href="/claim">
-                    <a
-                        className={`mr-10 text-xl font-semibold transition-opacity ${style["link"]} hover:opacity-60`}
-                    >
-                        Claim
-                    </a>
-                </Link>
-                <Link href="/about">
+                <BaseLink href="/about">
                     <a
                         className={`mr-10 text-xl font-semibold transition-opacity ${style["link"]} hover:opacity-60`}
                     >
                         About
                     </a>
-                </Link>
-                <Link href="/login">
+                </BaseLink>
+                <BaseLink href="/login">
                     <a
                         className={`flex items-center py-3 text-xl font-black transition bg-white rounded-lg shadow-xl px-7 ${style["login-button"]}`}
                     >
@@ -51,7 +44,7 @@ const Navbar = () => {
                             Login
                         </p>
                     </a>
-                </Link>
+                </BaseLink>
             </div>
         </div>
     );

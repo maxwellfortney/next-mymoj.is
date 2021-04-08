@@ -1,9 +1,9 @@
 import BaseLink from "../components/BaseLink";
 
-export default function Claim() {
+export default function About() {
     return (
         <div className="flex flex-col">
-            claim
+            about
             <BaseLink href="/">HOME LINK</BaseLink>
         </div>
     );
