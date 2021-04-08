@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { createElement, useEffect } from "react";
+import BaseLink from "../components/BaseLink";
 
 export default function Redirect() {
     const router = useRouter();
@@ -23,10 +24,11 @@ export default function Redirect() {
         // router.replace(window.location.href);
         // window.history.pushState({});
         // router.replace("/claim");
+        router.basePath = baseURL;
         if (window.location.href.includes("claim")) {
             // window.history.replaceState(null, "", "/claim");
             // document.documentElement.innerHTML = loadPage("/claim.html");
-            router.replace(baseURL + "claim");
+            router.replace("claim");
         } else {
             // router.replace();
         }
