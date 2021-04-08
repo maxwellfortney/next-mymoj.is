@@ -20,6 +20,7 @@ export default function Redirect() {
         console.log(router);
         // router.replace(window.location.href);
         // window.history.pushState({});
+        router.replace("/claim");
         if (window.location.href.includes("claim")) {
             // window.history.replaceState(null, "", "/claim");
             // document.documentElement.innerHTML = loadPage("/claim.html");

@@ -1,5 +1,8 @@
 module.exports = {
-    future: {
-        webpack5: true,
+    trailingSlash: true,
+    exportPathMap: function () {
+        return {
+            "/": { page: "/" },
+        };
     },
 };
