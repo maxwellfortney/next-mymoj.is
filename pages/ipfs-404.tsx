@@ -17,17 +17,21 @@ export default function Redirect() {
             )
         );
 
-        // router.basePath = baseURL;
+        router.basePath = baseURL;
         if (window.location.href.includes("claim")) {
             router.replace("claim", baseURL + "claim");
         } else if (window.location.href.includes("about")) {
             router.replace("about", baseURL + "about");
         } else {
             router.replace(
-                window.location.pathname.substr(
-                    window.location.pathname.lastIndexOf("/") + 1
-                )
-                // window.location.pathname
+                window.location.pathname.substr(-1) === "/"
+                    ? window.location.pathname.substr(
+                          window.location.pathname.indexOf("/") + 1
+                      )
+                    : window.location.pathname.substr(
+                          window.location.pathname.lastIndexOf("/") + 1
+                      ),
+                window.location.pathname
             );
         }
     }
