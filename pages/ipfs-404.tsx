@@ -11,10 +11,9 @@ export default function Redirect() {
         console.log(window.location);
         console.log(router);
 
-        console.log(window.location.pathname.indexOf(baseURL));
         console.log(
             window.location.pathname.substr(
-                window.location.pathname.indexOf(baseURL)
+                window.location.pathname.lastIndexOf("/") + 1
             )
         );
 
@@ -27,8 +26,8 @@ export default function Redirect() {
             router.replace(
                 window.location.pathname.substr(
                     window.location.pathname.lastIndexOf("/") + 1
-                ),
-                window.location.pathname
+                )
+                // window.location.pathname
             );
         }
     }
