@@ -16,7 +16,13 @@ const BaseLink = ({ href, as, ...rest }: any) => {
             // on the client
             //   document is unavailable when compiling on the server
             if (typeof document !== "undefined") {
-                baseURI_as = resolve(document.baseURI, baseURI_as);
+                const { pathname } = window.location;
+                const ipfsMatch = new RegExp(".*\\/Qm\\w{44}").exec(pathname);
+                console.log(ipfsMatch);
+                baseURI_as = resolve(
+                    ipfsMatch ? ipfsMatch[0] : "/",
+                    baseURI_as
+                );
                 // => <a href="https://gateway.ipfs.io/ipfs/Qm<hash>/about">About</a>
             }
         }

@@ -15,9 +15,7 @@ class MyDocument extends Document {
     render() {
         return (
             <Html>
-                <Head>
-                    <script dangerouslySetInnerHTML={{ __html: scriptTxt }} />
-                </Head>
+                <Head></Head>
                 <body>
                     <Main />
                     <NextScript />
