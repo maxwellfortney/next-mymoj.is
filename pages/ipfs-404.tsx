@@ -13,6 +13,8 @@ export default function Redirect() {
     }
 
     function handleRedirects() {
+        const baseURL = document.getElementsByTagName("base")[0];
+
         console.log(window.history);
         console.log(window.location);
         console.log(document.referrer);
@@ -24,7 +26,7 @@ export default function Redirect() {
         if (window.location.href.includes("claim")) {
             // window.history.replaceState(null, "", "/claim");
             // document.documentElement.innerHTML = loadPage("/claim.html");
-            router.replace("/claim");
+            router.replace(baseURL + "claim");
         } else {
             // router.replace();
         }
