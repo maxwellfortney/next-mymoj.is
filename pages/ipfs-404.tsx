@@ -13,7 +13,7 @@ export default function Redirect() {
     }
 
     function handleRedirects() {
-        const baseURL = document.getElementsByTagName("base")[0];
+        const baseURL = document.getElementsByTagName("base")[0].href;
 
         console.log(window.history);
         console.log(window.location);
