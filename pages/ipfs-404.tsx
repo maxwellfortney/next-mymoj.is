@@ -28,7 +28,7 @@ export default function Redirect() {
         if (window.location.href.includes("claim")) {
             // window.history.replaceState(null, "", "/claim");
             // document.documentElement.innerHTML = loadPage("/claim.html");
-            router.replace("claim");
+            router.replace("claim", baseURL + "claim");
         } else {
             // router.replace();
         }
