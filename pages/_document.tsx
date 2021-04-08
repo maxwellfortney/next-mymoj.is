@@ -12,10 +12,13 @@ const scriptTxt = `
 `;
 
 class MyDocument extends Document {
+    componentDidMount() {}
     render() {
         return (
             <Html>
-                <Head></Head>
+                <Head>
+                    <script dangerouslySetInnerHTML={{ __html: scriptTxt }} />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />
