@@ -26,7 +26,7 @@ export default function Redirect() {
         } else {
             router.replace(
                 window.location.pathname.substr(
-                    window.location.pathname.indexOf(baseURL)
+                    window.location.pathname.lastIndexOf("/") + 1
                 ),
                 window.location.pathname
             );
