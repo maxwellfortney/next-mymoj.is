@@ -1,10 +1,11 @@
 import Link from "next/link";
+import BaseLink from "../components/BaseLink";
 
 export default function Claim() {
     return (
         <div className="">
             claim
-            <Link href="/">HOME LINK</Link>
+            <BaseLink href="/">HOME LINK</BaseLink>
         </div>
     );
 }
