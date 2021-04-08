@@ -1,6 +1,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import Link from "next/link";
+import BaseLink from "../BaseLink";
 import style from "../../styles/Navbar.module.css";
 
 const Navbar = () => {
@@ -19,6 +20,13 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="flex items-center">
+                <BaseLink href="/claim">
+                    <a
+                        className={`mr-10 text-xl font-semibold transition-opacity ${style["link"]} hover:opacity-60`}
+                    >
+                        Claim
+                    </a>
+                </BaseLink>
                 <Link href="/claim">
                     <a
                         className={`mr-10 text-xl font-semibold transition-opacity ${style["link"]} hover:opacity-60`}
