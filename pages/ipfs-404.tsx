@@ -11,13 +11,25 @@ export default function Redirect() {
         console.log(window.location);
         console.log(router);
 
+        console.log(window.location.pathname.indexOf(baseURL));
+        console.log(
+            window.location.pathname.substr(
+                window.location.pathname.indexOf(baseURL)
+            )
+        );
+
         // router.basePath = baseURL;
         if (window.location.href.includes("claim")) {
             router.replace("claim", baseURL + "claim");
         } else if (window.location.href.includes("about")) {
             router.replace("about", baseURL + "about");
         } else {
-            // router.replace();
+            router.replace(
+                window.location.pathname.substr(
+                    window.location.pathname.indexOf(baseURL)
+                ),
+                window.location.pathname
+            );
         }
     }
 
