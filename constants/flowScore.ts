@@ -1,13 +1,49 @@
 import { Emoji } from "../types/Emoji";
 import { frequencyTierDict } from "./emojiData";
 
+function calculateFlowScore3(a: Emoji[]) {
+    let score = 100;
+    if (a[0].symbol == a[1].symbol && a[0].symbol == a[2].symbol) {
+        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+    } else if(a[0].symbol == a[2].symbol) { // if bookend
+        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+        score -= 2*(frequencyTierDict as any)[a[1].symbol];
+    } else {
+        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+        score -= 1*(frequencyTierDict as any)[a[1].symbol];
+        score -= 2*(frequencyTierDict as any)[a[2].symbol];
+    }
+    return score;
+}
+
+function calculateFlowScore2(a: Emoji[]) {
+    let score = 100;
+    if (a[0].symbol == a[1].symbol) {
+        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+    } else {
+        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+        score -= 2*(frequencyTierDict as any)[a[1].symbol];
+    }
+    return score;
+}
+
+function calculateFlowScore1(a: Emoji[]) {
+    let score = 100;
+    score -= (frequencyTierDict as any)[a[0].symbol];
+    return score;
+}
+
 export function calculateFlowScore(emojiArr: Emoji[]) {
-    if (emojiArr.length === 0) return;
-    console.log(emojiArr);
-    const patternScore = calculatePatternScore(emojiArr);
-    const averagePopularity = calculateAveragePopularity(emojiArr);
-    console.log(averagePopularity);
-    return patternScore;
+    switch(emojiArr.length) {
+        case 0:
+            return;
+        case 1:
+            return calculateFlowScore1(emojiArr);
+        case 2:
+            return calculateFlowScore2(emojiArr);
+        case 3:
+            return calculateFlowScore3(emojiArr);
+    }
 }
 
 function calculatePatternScore(emojiArr: Emoji[]) {
