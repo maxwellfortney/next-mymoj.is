@@ -6,11 +6,14 @@ import styles from "../styles/Claim.module.css";
 
 export default function Claim() {
     const [searchString, setSearchString] = useState("");
+    const [searchActiveIndex, setSearchActiveIndex] = useState(0);
+
     const [inputEmojiArr, setInputEmojiArr] = useState<Emoji[]>([]);
+
     const [sliderScrollPos, setSliderScrollPos] = useState(0);
     const [sliderScrollBooster, setSliderScrollBooster] = useState();
-    const [isAvailable, setIsAvailable] = useState(false);
-    const [searchActiveIndex, setSearchActiveIndex] = useState(0);
+
+    const [isAvailable, setIsAvailable] = useState(false); // Psuedo toggle if emojiString is sold or not
 
     return (
         <div

@@ -27,13 +27,19 @@ const SlideComponents = [
     <RedirectExample />,
 ];
 
+let interval: NodeJS.Timeout;
+
 const CustomizePage = () => {
     const [slideIndex, setSlideIndex] = useState(0);
 
     useEffect(() => {
-        setInterval(() => {
+        interval = setInterval(() => {
             slideIndex == 2 ? setSlideIndex(0) : setSlideIndex(slideIndex + 1);
         }, 1000 * 7);
+
+        return () => {
+            clearInterval(interval);
+        };
     });
     return (
         <div
