@@ -1,10 +1,11 @@
 import { useContext, useEffect } from "react";
-import { ValidEmojis } from "../../../constants/constants";
+import { ValidEmojis } from "../../../constants/emojiData";
 import { EmojiContext } from "../../../pages/claim";
 import styles from "../../../styles/Claim.module.css";
 import { Emoji as EmojiType } from "../../../types/Emoji";
 import PickerResults from "./PickerResults";
 import SelectedEmoji from "./SelectedEmoji";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const EmojiTopDisplay = () => {
     const {
@@ -36,19 +37,22 @@ const EmojiTopDisplay = () => {
                     return index !== inputEmojiArr.length - 1;
                 })
             );
-        } else if (e.key === "Enter" && searchString.length > 0) {
-            setInputEmojiArr([
-                ...inputEmojiArr,
-                ValidEmojis.filter((item) => {
-                    let match = false;
-                    item.keywords.forEach((keyword) => {
-                        if (keyword.includes(searchString)) match = true;
-                    });
-                    if (item.label?.includes(searchString)) match = true;
+        } else if (
+            e.key === "Enter" &&
+            searchString.length > 0 &&
+            inputEmojiArr.length < 5
+        ) {
+            let filterdArr = ValidEmojis.filter((item) => {
+                let match = false;
+                item.keywords.forEach((keyword) => {
+                    if (keyword.includes(searchString)) match = true;
+                });
+                if (item.label?.includes(searchString)) match = true;
 
-                    return match;
-                })[searchActiveIndex],
-            ]);
+                return match;
+            });
+            if (filterdArr.length === 0) return;
+            setInputEmojiArr([...inputEmojiArr, filterdArr[searchActiveIndex]]);
             setSearchString("");
         } else if (searchString.length > 0 && e.key === "ArrowRight") {
             e.preventDefault();
@@ -135,25 +139,39 @@ const EmojiTopDisplay = () => {
                     <div
                         className={`relative flex items-center w-full justify-start my-auto ${styles["emoji-search-input-container"]}`}
                     >
-                        {inputEmojiArr.length > 0 ? (
-                            <div
-                                className="grid gap-4 ml-3"
-                                style={{ gridAutoFlow: "column" }}
-                            >
-                                {inputEmojiArr.map(
-                                    (emoji: EmojiType, i: number) => {
-                                        return (
+                        {/* {inputEmojiArr.length > 0 ? (
+                            // <div
+                            //     className="grid gap-4 ml-3"
+                            //     style={{ gridAutoFlow: "column" }}
+                            // >
+                            
+                        ) : // </div>
+                        null} */}
+                        <TransitionGroup
+                            className={`grid gap-4 ml-3`}
+                            style={{
+                                gridAutoFlow: "column",
+                            }}
+                        >
+                            {inputEmojiArr.map(
+                                (emoji: EmojiType, i: number) => {
+                                    return (
+                                        <CSSTransition
+                                            key={i}
+                                            classNames="fade"
+                                            timeout={250}
+                                        >
                                             <SelectedEmoji
                                                 symbol={emoji.symbol}
                                                 label={emoji.label}
                                                 key={`${emoji.symbol}-${i}`}
                                                 i={i}
                                             />
-                                        );
-                                    }
-                                )}
-                            </div>
-                        ) : null}
+                                        </CSSTransition>
+                                    );
+                                }
+                            )}
+                        </TransitionGroup>
                         <input
                             tabIndex={0}
                             type="text"

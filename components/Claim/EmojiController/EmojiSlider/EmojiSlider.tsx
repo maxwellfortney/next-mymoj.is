@@ -8,7 +8,7 @@ import {
     Objects,
     Symbols,
     getKeywordsForEmoji,
-} from "../../../../constants/constants";
+} from "../../../../constants/emojiData";
 import styles from "../../../../styles/Claim.module.css";
 import CategoryMatrix from "./CategoryMatrix";
 import { EmojiContext } from "../../../../pages/claim";
@@ -21,7 +21,7 @@ import SearchResults from "./SearchResults";
 const EmojiSlider = () => {
     const [viewport, scrollbooster] = useScrollBoost({
         direction: "horizontal",
-        friction: 0.12,
+        // friction: 0.12,
         // bounceForce: 0.15,
         // bounce: false,
         scrollMode: "native",

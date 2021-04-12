@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import styles from "../../../styles/MyMojisExample.module.css";
 
-import { ValidEmojis } from "../../../constants/constants";
+import { ValidEmojis } from "../../../constants/emojiData";
 
 const MyMojisExample = () => {
     const [currentMyMoji, setCurrentMyMoji] = useState<string[]>();
