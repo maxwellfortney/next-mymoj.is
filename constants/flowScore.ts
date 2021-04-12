@@ -1,6 +1,55 @@
 import { Emoji } from "../types/Emoji";
 import { frequencyTierDict } from "./emojiData";
 
+function getRepetitions(a: Emoji[]) {
+    if(a.length <= 0) return {};
+    let rt: { [key: string]: number } = {};
+    let currSym = a[0].symbol;
+    let count = 0;
+    for(let i = 1; i < a.length; i++) {
+        if(a[i].symbol == a[i-1].symbol) {
+            if(rt[a[i].symbol] == undefined) rt[a[i].symbol] = 0;
+            currSym = a[i].symbol;
+            if(count == 0) {
+                count = 2;
+            } else {
+                count++;
+            }
+        } else {
+            if(count > 1 && count > rt[currSym]) rt[currSym] = count;
+            count = 0;
+        }
+    }
+    if(count > 1 && count > rt[currSym]) rt[currSym] = count;
+    return rt;
+}
+
+function calculateFlowScore5(a: Emoji[]) {
+    let score = 100;
+    let rt = getRepetitions(a);
+    for (let i = 0; i < a.length; i++) {
+        if (rt[a[i].symbol] == undefined) {
+            score -= 2 * (frequencyTierDict as any)[a[0].symbol];
+        } else {
+            score -= (2/rt[a[i].symbol]) * (frequencyTierDict as any)[a[0].symbol];
+        }
+    }
+    return score;
+}
+
+function calculateFlowScore4(a: Emoji[]) {
+    let score = 100;
+    let rt = getRepetitions(a);
+    for(let i = 0; i < a.length; i++) {
+        if(rt[a[i].symbol] == undefined) {
+            score -= 2*(frequencyTierDict as any)[a[0].symbol];
+        } else {
+            score -= (1/rt[a[i].symbol])*(frequencyTierDict as any)[a[0].symbol];
+        }
+    }
+    return score;
+}
+
 function calculateFlowScore3(a: Emoji[]) {
     let score = 100;
     if (a[0].symbol == a[1].symbol && a[0].symbol == a[2].symbol) {
@@ -34,6 +83,7 @@ function calculateFlowScore1(a: Emoji[]) {
 }
 
 export function calculateFlowScore(emojiArr: Emoji[]) {
+    getRepetitions(emojiArr);
     switch(emojiArr.length) {
         case 0:
             return;
@@ -43,6 +93,10 @@ export function calculateFlowScore(emojiArr: Emoji[]) {
             return calculateFlowScore2(emojiArr);
         case 3:
             return calculateFlowScore3(emojiArr);
+        case 4:
+            return calculateFlowScore4(emojiArr);
+        case 5:
+            return calculateFlowScore5(emojiArr);
     }
 }
 
