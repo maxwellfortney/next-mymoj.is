@@ -1,0 +1,26 @@
+.green-title {
+    font-size: 2.75rem;
+    line-height: 1;
+    background: linear-gradient(141.92deg, #8bff30 27.34%, #00d749 83.37%);
+
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: animatedGradient 6s ease infinite;
+    background-size: 200% 200%;
+}
+
+.AnimationPlaceholder {
+    aspect-ratio: 10/6;
+}
+
+@keyframes animatedGradient {
+    0% {
+        background-position: 10% 0%;
+    }
+    50% {
+        background-position: 91% 100%;
+    }
+    100% {
+        background-position: 10% 0%;
+    }
+}

@@ -4,7 +4,9 @@ import Navbar from "../components/Navbar/Navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <div className="flex flex-col items-center justify-start w-11/12 h-full mx-auto">
+        <div
+            className={`flex flex-col items-center justify-start w-full h-full mx-auto`}
+        >
             <Navbar />
             <Component {...pageProps} />
         </div>

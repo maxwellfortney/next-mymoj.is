@@ -1,0 +1,183 @@
+.Claim {
+    height: calc(100vh - 115px);
+}
+
+.category-selector p {
+    color: #003d71;
+}
+
+.category-selector:hover {
+    cursor: grab;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.category-selector::-webkit-scrollbar {
+    display: none;
+}
+
+.emoji-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.emoji-slider {
+    /* scroll-behavior: smooth; */
+    /* overflow-x: auto !important; */
+    min-height: 317.75px;
+}
+
+.emoji-slider:hover {
+    cursor: grab;
+}
+
+.single-emoji-active {
+    border: 2px solid #003d71;
+    box-shadow: 0 0 20px #003c7171;
+}
+
+.single-emoji {
+    /* Set the width to prevent jump on hover */
+    width: 61.44px;
+    aspect-ratio: 1;
+    transition: 0.15s ease-in-out;
+}
+
+.single-emoji:hover {
+    transform: scale3d(1.15, 1.15, 1);
+    border: 2px solid #003d71;
+    box-shadow: 0 0 20px #003c7171;
+}
+
+.emoji-search-input {
+    caret-color: #003d71;
+    background: none;
+}
+
+/* Fade search input right */
+.emoji-search-input-container::after {
+    content: "";
+    top: 0;
+    right: 0;
+    width: 2.5em;
+    height: 100%;
+    background-image: linear-gradient(270deg, #f8fafd, #f8fafd25);
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Fade Emoji Slider left and right */
+.emoji-slider::before {
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 6vw;
+    height: 375px;
+    background-image: linear-gradient(90deg, #f8fafd, #f8fafd25);
+    position: absolute;
+    pointer-events: none;
+}
+
+.emoji-slider::after {
+    content: "";
+    bottom: 0;
+    right: 0;
+    width: 6vw;
+    height: 375px;
+    background-image: linear-gradient(270deg, #f8fafd, #f8fafd25);
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Active Selected Emojis */
+.single-emoji-selected {
+    aspect-ratio: 1;
+    width: 136px;
+    animation: fade-in 250ms ease-in-out;
+    background: linear-gradient(
+        #ffffff 0%,
+        #f3f3f3 10%,
+        #e7e7e7 50%,
+        #e6e6e6 100%
+    );
+    filter: brightness(1.05);
+}
+
+.delete-selected-button {
+    transition: transform ease-in-out 0.1s;
+}
+.delete-selected-button:hover {
+    transform: scale(1.1);
+}
+
+.single-emoji-selected:hover {
+    cursor: grab;
+    user-select: none;
+}
+
+.single-emoji-selected-valid {
+    box-shadow: inset 0 -0.0625em 0.125em rgb(0 255 8 / 60%),
+        0 0 0.8em rgb(0 255 8 / 70%);
+}
+
+.single-emoji-selected-invalid {
+    box-shadow: inset 0 -0.0625em 0.125em rgb(231 2 86 / 50%),
+        0 0 1em rgb(231 2 86 / 50%);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.single-emoji-selected::before {
+    content: "";
+    border-radius: 1.5rem;
+    width: 85%;
+    height: 85%;
+    position: absolute;
+    background: linear-gradient(#ffffff 0%, #e7e7e7 60%, #dfdfdf 100%);
+    filter: blur(18px);
+}
+
+.single-emoji-selected::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.445);
+    bottom: -20px;
+    filter: blur(10px);
+}
+
+.available-gradient-button {
+    background: linear-gradient(141.92deg, #59ff30 27.34%, #00d749 83.37%);
+    animation: animatedGradient 6s ease infinite;
+    background-size: 200% 200%;
+    box-shadow: 0 0 45px rgb(91 237 52 / 80%);
+    filter: brightness(1.1);
+}
+
+.taken-gradient-button {
+    background: linear-gradient(141.92deg, #ff4321 27.34%, #fa1c1c 83.37%);
+    animation: animatedGradient 6s ease infinite;
+    background-size: 200% 200%;
+    box-shadow: 0 0 45px rgb(255 61 51 / 80%);
+    filter: brightness(1.1);
+}
+
+@keyframes animatedGradient {
+    0% {
+        background-position: 10% 0%;
+    }
+    50% {
+        background-position: 91% 100%;
+    }
+    100% {
+        background-position: 10% 0%;
+    }
+}

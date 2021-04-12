@@ -1,13 +1,5 @@
-.Home {
-    min-height: calc(100vh - 115px);
-}
-
-.main-container {
-    height: calc(100vh - 115px);
-}
-
-.main-title {
-    font-size: 55px;
+.blue-title {
+    font-size: 2.75rem;
     line-height: 1;
     background-image: linear-gradient(
         142deg,
@@ -16,8 +8,21 @@
     );
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: animatedGradient 10s ease infinite;
+    animation: animatedGradient 6s ease infinite;
     background-size: 200% 200%;
+}
+
+.progress-bar {
+    animation: customizePageProgressbar 7s infinite linear;
+}
+
+@keyframes customizePageProgressbar {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 @keyframes animatedGradient {
@@ -30,7 +35,4 @@
     100% {
         background-position: 10% 0%;
     }
-}
-.sub-title {
-    color: #003d71;
 }

@@ -1,0 +1,45 @@
+.container {
+    /* grid-template-columns: 1fr auto 1fr; */
+}
+
+.main {
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.SingleMoji {
+    aspect-ratio: 1;
+    max-height: 165px;
+}
+
+.gradientBG {
+    background: linear-gradient(134.13deg, #3668e8 3.59%, #feb1ff 94.19%);
+    animation: animatedGradient 10s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes animatedGradient {
+    0% {
+        background-position: 10% 0%;
+    }
+    50% {
+        background-position: 91% 100%;
+    }
+    100% {
+        background-position: 10% 0%;
+    }
+}
+
+.SingleMoji {
+    font-size: 5.3rem;
+    /* line-height: 1; */
+}
+
+.emoji {
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    font-style: normal;
+    display: inline-flex;
+    vertical-align: inherit;
+    line-height: inherit;
+}

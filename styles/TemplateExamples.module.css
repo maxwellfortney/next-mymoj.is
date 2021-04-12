@@ -1,0 +1,10 @@
+.TemplateExamples {
+    /* grid-template-columns: 1fr 1fr; */
+    grid-row: 345px 345px;
+}
+
+.Template1 {
+    min-height: 345px;
+    /* height: 40vh; */
+    height: 345px;
+}
