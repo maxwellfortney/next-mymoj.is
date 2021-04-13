@@ -27,7 +27,6 @@ const EmojiTopDisplay = () => {
     }
 
     function handleKeyDown(e: any) {
-        console.log(e.key);
         if (
             e.key === "Backspace" &&
             inputEmojiArr.length > 0 &&

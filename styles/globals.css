@@ -35,6 +35,28 @@ body {
     transition: opacity 200ms;
 }
 
+/* Fade to 90*/
+.fade90-enter {
+    opacity: 0;
+}
+
+.fade90-enter-done {
+    opacity: 0.93;
+}
+.fade90-exit {
+    opacity: 0.93;
+}
+.fade90-enter-active {
+    opacity: 0.93;
+}
+.fade90-exit-active {
+    opacity: 0;
+}
+.fade90-enter-active,
+.fade90-exit-active {
+    transition: opacity 200ms;
+}
+
 /* Fade and slide  */
 .fadeAndSlide-enter {
     opacity: 0;
