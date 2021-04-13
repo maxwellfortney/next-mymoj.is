@@ -6,6 +6,7 @@ import { Emoji as EmojiType } from "../../../types/Emoji";
 import PickerResults from "./PickerResults";
 import SelectedEmoji from "./SelectedEmoji";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const EmojiTopDisplay = () => {
     const {
@@ -124,6 +125,29 @@ const EmojiTopDisplay = () => {
         }
     }
 
+    function onDragEnd(result: any) {
+        console.log(result);
+        const { destination, source, draggableId } = result;
+        if (!destination) {
+            // Null drop
+            return;
+        } else if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
+            // Dropped at the same index
+            return;
+        } else {
+            const emojiData = inputEmojiArr[source.index];
+            const newInputEmojiArr: EmojiType[] = Array.from(inputEmojiArr);
+            newInputEmojiArr.splice(source.index, 1);
+            newInputEmojiArr.splice(destination.index, 0, emojiData);
+
+            console.log(newInputEmojiArr);
+            setInputEmojiArr(newInputEmojiArr);
+        }
+    }
+
     return (
         <>
             <div className="flex flex-col justify-center flex-auto w-11/12 mt-12">
@@ -139,39 +163,73 @@ const EmojiTopDisplay = () => {
                     <div
                         className={`relative flex items-center w-full justify-start my-auto ${styles["emoji-search-input-container"]}`}
                     >
-                        {/* {inputEmojiArr.length > 0 ? (
-                            // <div
-                            //     className="grid gap-4 ml-3"
-                            //     style={{ gridAutoFlow: "column" }}
-                            // >
-                            
-                        ) : // </div>
-                        null} */}
-                        <TransitionGroup
-                            className={`grid gap-4 ml-3`}
-                            style={{
-                                gridAutoFlow: "column",
-                            }}
-                        >
-                            {inputEmojiArr.map(
-                                (emoji: EmojiType, i: number) => {
-                                    return (
-                                        <CSSTransition
-                                            key={i}
-                                            classNames="fade"
-                                            timeout={250}
+                        <DragDropContext onDragEnd={onDragEnd}>
+                            <Droppable
+                                droppableId="selectedEmojis"
+                                direction="horizontal"
+                            >
+                                {(provided) => (
+                                    <div
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                        className="flex items-center"
+                                    >
+                                        <TransitionGroup
+                                            // className={`grid gap-4 ml-3`}
+                                            // style={{
+                                            //     gridAutoFlow: "column",
+                                            // }}
+                                            className="flex items-center"
                                         >
-                                            <SelectedEmoji
-                                                symbol={emoji.symbol}
-                                                label={emoji.label}
-                                                key={`${emoji.symbol}-${i}`}
-                                                i={i}
-                                            />
-                                        </CSSTransition>
-                                    );
-                                }
-                            )}
-                        </TransitionGroup>
+                                            {inputEmojiArr.map(
+                                                (
+                                                    emoji: EmojiType,
+                                                    i: number
+                                                ) => {
+                                                    return (
+                                                        // <CSSTransition
+                                                        //     key={i}
+                                                        //     classNames="fade"
+                                                        //     timeout={250}
+                                                        // >
+                                                        //     <SelectedEmoji
+                                                        //         symbol={
+                                                        //             emoji.symbol
+                                                        //         }
+                                                        //         label={
+                                                        //             emoji.label
+                                                        //         }
+                                                        //         key={`${emoji.symbol}-${i}`}
+                                                        //         i={i}
+                                                        //     />
+                                                        // </CSSTransition>
+
+                                                        <CSSTransition
+                                                            key={i}
+                                                            classNames="fade"
+                                                            timeout={250}
+                                                        >
+                                                            <SelectedEmoji
+                                                                symbol={
+                                                                    emoji.symbol
+                                                                }
+                                                                label={
+                                                                    emoji.label
+                                                                }
+                                                                key={`${emoji.symbol}-${i}`}
+                                                                i={i}
+                                                            />
+                                                        </CSSTransition>
+                                                    );
+                                                }
+                                            )}
+                                            {provided.placeholder}
+                                        </TransitionGroup>
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                        {/* </TransitionGroup> */}
                         <input
                             tabIndex={0}
                             type="text"

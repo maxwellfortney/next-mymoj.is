@@ -29,9 +29,7 @@ const PickerResults = () => {
 
     useEffect(() => {
         // Multiplying by 10 as placeholder!!
-        setFlowScore(
-            ((calculateFlowScore(inputEmojiArr) as number) * 10) as number
-        );
+        setFlowScore(calculateFlowScore(inputEmojiArr) as number);
 
         console.log(inputEmojiArr);
     }, [inputEmojiArr]);

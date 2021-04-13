@@ -38,6 +38,7 @@
 .single-emoji {
     /* Set the width to prevent jump on hover */
     width: 61.44px;
+    height: 61.44px;
     aspect-ratio: 1;
     transition: 0.15s ease-in-out;
 }
@@ -92,7 +93,8 @@
 .single-emoji-selected {
     aspect-ratio: 1;
     width: 136px;
-    animation: fade-in 250ms ease-in-out;
+    height: 136px;
+    /* animation: fade-in 250ms ease-in-out; */
     background: linear-gradient(
         #ffffff 0%,
         #f3f3f3 10%,
@@ -103,10 +105,11 @@
 }
 
 .delete-selected-button {
-    transition: transform ease-in-out 0.1s;
+    transition: ease-in-out 0.1s;
 }
 .delete-selected-button:hover {
     transform: scale(1.1);
+    color: #ff1e1e;
 }
 
 .single-emoji-selected:hover {
