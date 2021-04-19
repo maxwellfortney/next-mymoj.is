@@ -1,9 +1,10 @@
 .Claim {
     height: calc(100vh - 115px);
+    /* min-height: 700px; */
 }
 
 .category-selector p {
-    color: #003d71;
+    color: #000000;
 }
 
 .category-selector:hover {
@@ -31,8 +32,8 @@
 }
 
 .single-emoji-active {
-    border: 2px solid #003d71;
-    box-shadow: 0 0 20px #003c7171;
+    border: 2px solid #000000;
+    box-shadow: 0 0 20px #00000054;
 }
 
 .single-emoji {
@@ -45,12 +46,12 @@
 
 .single-emoji:hover {
     transform: scale3d(1.15, 1.15, 1);
-    border: 2px solid #003d71;
-    box-shadow: 0 0 20px #003c7171;
+    border: 2px solid #000000;
+    box-shadow: 0 0 20px #00000091;
 }
 
 .emoji-search-input {
-    caret-color: #003d71;
+    caret-color: #000000;
     background: none;
 }
 
@@ -61,7 +62,7 @@
     right: 0;
     width: 2.5em;
     height: 100%;
-    background-image: linear-gradient(270deg, #f8fafd, #f8fafd25);
+    background-image: linear-gradient(270deg, #ffff0f, #f8fafd00);
     position: absolute;
     pointer-events: none;
 }
@@ -73,7 +74,7 @@
     left: 0;
     width: 6vw;
     height: 375px;
-    background-image: linear-gradient(90deg, #f8fafd, #f8fafd25);
+    background-image: linear-gradient(90deg, #ffff0f, #f8fafd00);
     position: absolute;
     pointer-events: none;
 }
@@ -84,7 +85,7 @@
     right: 0;
     width: 6vw;
     height: 375px;
-    background-image: linear-gradient(270deg, #f8fafd, #f8fafd25);
+    background-image: linear-gradient(270deg, #ffff0f, #f8fafd00);
     position: absolute;
     pointer-events: none;
 }
@@ -95,13 +96,15 @@
     width: 136px;
     height: 136px;
     /* animation: fade-in 250ms ease-in-out; */
-    background: linear-gradient(
+    /* background: linear-gradient(
         #ffffff 0%,
         #f3f3f3 10%,
         #e7e7e7 50%,
         #e6e6e6 100%
-    );
+    ); */
     filter: brightness(1.05);
+    user-select: none;
+    border-radius: 40px;
 }
 
 .delete-selected-button {
@@ -114,11 +117,12 @@
 
 .single-emoji-selected:hover {
     cursor: grab;
-    user-select: none;
 }
 
 .single-emoji-selected-valid {
-    box-shadow: inset 0 -0.0625em 0.125em rgb(0 255 8 / 60%),
+    /* box-shadow: inset 0 -0.0625em 0.125em rgb(0 255 8 / 60%),
+        0 0 0.8em rgb(0 255 8 / 70%); */
+    box-shadow: inset 0px -4px 4px rgba(0, 0, 0, 0.25),
         0 0 0.8em rgb(0 255 8 / 70%);
 }
 
@@ -157,11 +161,17 @@
 }
 
 .available-gradient-button {
-    background: linear-gradient(141.92deg, #59ff30 27.34%, #00d749 83.37%);
+    background: linear-gradient(141.92deg, #33ff00 27.34%, #00ff38 83.37%);
     animation: animatedGradient 6s ease infinite;
     background-size: 200% 200%;
     box-shadow: 0 0 45px rgb(91 237 52 / 80%);
     filter: brightness(1.1);
+    transition: ease-in-out 0.15s;
+}
+
+.available-gradient-button:hover {
+    filter: brightness(1.25);
+    box-shadow: 0 0 45px 1.5rem rgb(91 237 52 / 80%);
 }
 
 .taken-gradient-button {

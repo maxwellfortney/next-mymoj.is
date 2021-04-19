@@ -8,12 +8,14 @@
 }
 
 .SingleMoji {
-    aspect-ratio: 1;
-    max-height: 165px;
+    width: 165px;
+    height: 165px;
+    /* aspect-ratio: 1; */
+    /* max-height: 165px; */
 }
 
 .gradientBG {
-    background: linear-gradient(134.13deg, #3668e8 3.59%, #feb1ff 94.19%);
+    background: linear-gradient(to bottom, #ffff0f, #000000);
     animation: animatedGradient 10s ease infinite;
     background-size: 200% 200%;
 }

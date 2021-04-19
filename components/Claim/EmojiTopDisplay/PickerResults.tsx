@@ -12,6 +12,8 @@ const PickerResults = () => {
         inputEmojiArr,
         setInputEmojiArr,
         isAvailable,
+        isCustomizeNFTOpen,
+        setIsCustomizeNFTOpen,
     } = useContext(EmojiContext);
     const [flowScore, setFlowScore] = useState<number>(10);
 
@@ -28,7 +30,6 @@ const PickerResults = () => {
     }
 
     useEffect(() => {
-        // Multiplying by 10 as placeholder!!
         setFlowScore(calculateFlowScore(inputEmojiArr) as number);
 
         console.log(inputEmojiArr);
@@ -43,27 +44,34 @@ const PickerResults = () => {
                     timeout={250}
                     unmountOnExit
                 >
-                    <div
-                        className={`flex flex-col items-center justify-center px-12 py-4 rounded-full ${
-                            styles[
-                                `${
-                                    isAvailable
-                                        ? "available-gradient-button"
-                                        : "taken-gradient-button"
-                                }`
-                            ]
-                        } ${isAvailable ? "text-white" : "text-white"}`}
-                    >
-                        <p className="text-xl font-bold leading-tight whitespace-nowrap">
-                            {isAvailable
-                                ? "Buy now for 1 ETH"
-                                : "This MyMoji is taken"}
-                        </p>
-                        <p className="text-sm font-light leading-tight text-gray-50 whitespace-nowrap">
-                            {isAvailable
-                                ? "Pay once, truly own forever 😉"
-                                : "Try another combo"}
-                        </p>
+                    <div className="flex flex-col items-center justify-center">
+                        <div
+                            onClick={() => {
+                                isAvailable
+                                    ? setIsCustomizeNFTOpen(true)
+                                    : null;
+                            }}
+                            className={`flex flex-col items-center justify-center px-12 py-4 rounded-full cursor-pointer ${
+                                styles[
+                                    `${
+                                        isAvailable
+                                            ? "available-gradient-button"
+                                            : "taken-gradient-button"
+                                    }`
+                                ]
+                            } ${isAvailable ? "text-white" : "text-white"}`}
+                        >
+                            <p className="text-xl font-bold leading-tight whitespace-nowrap">
+                                {isAvailable
+                                    ? "Customize Now"
+                                    : "This Emoji @ is taken"}
+                            </p>
+                            <p className="text-sm font-light leading-tight text-gray-50 whitespace-nowrap">
+                                {isAvailable
+                                    ? "Purchase for 1 ETH"
+                                    : "View on OpenSea"}
+                            </p>
+                        </div>
                     </div>
                 </CSSTransition>
             </div>

@@ -87,7 +87,7 @@ const CategorySelector = () => {
 
     return (
         <ScrollContainer
-            className={`flex justify-between overflow-x-auto w-full sm:w-11/12 ${styles["category-selector"]} mb-4`}
+            className={`flex justify-between text-base md:text-lg overflow-x-auto w-full sm:w-11/12 ${styles["category-selector"]} mb-4`}
         >
             <p
                 onClick={() => scrollToSection("SmileysAndPeople")}

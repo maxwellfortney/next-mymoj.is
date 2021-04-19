@@ -15,7 +15,7 @@ const EmojiController = () => {
                 timeout={250}
                 unmountOnExit
             >
-                <div className="absolute z-10 flex items-center justify-center w-full h-full bg-mymojisBg">
+                <div className="absolute z-10 flex items-center justify-center w-full h-full bg-emojiAtYellow">
                     <p className="text-3xl">
                         You've reached the{" "}
                         <span className="font-bold">maximum length</span>.

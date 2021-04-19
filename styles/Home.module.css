@@ -6,7 +6,16 @@
     height: calc(100vh - 115px);
 }
 
-.main-title {
+/* .main-container::after {
+    content: "";
+    width: 100vw;
+    height: 10vh;
+    background: linear-gradient(to bottom, #ffff0f, #000000);
+    position: absolute;
+    top: 100%;
+} */
+
+/* .main-title {
     font-size: 55px;
     line-height: 1;
     background-image: linear-gradient(
@@ -18,7 +27,7 @@
     background-clip: text;
     animation: animatedGradient 10s ease infinite;
     background-size: 200% 200%;
-}
+} */
 
 @keyframes animatedGradient {
     0% {
@@ -31,6 +40,7 @@
         background-position: 10% 0%;
     }
 }
-.sub-title {
+
+/* .sub-title {
     color: #003d71;
-}
+} */

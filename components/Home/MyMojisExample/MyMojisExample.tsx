@@ -45,8 +45,8 @@ const MyMojisExample = () => {
                 <div className="flex-1">
                     <img
                         onClick={() => getRandomEmojis(3)}
-                        className="h-6 ml-12 transition-opacity cursor-pointer hover:opacity-70"
-                        src="/Icons/shuffle.png"
+                        className="h-8 ml-2 transition-opacity cursor-pointer lg:ml-12 hover:opacity-70"
+                        src="/Icons/shuffle.svg"
                     />
                 </div>
             </div>
@@ -56,13 +56,13 @@ const MyMojisExample = () => {
                         0,
                         (document?.querySelector(
                             "#CustomizePage"
-                        ) as HTMLElement).offsetTop - 25
+                        ) as HTMLElement).offsetTop - 20
                     )
                 }
-                className="w-12 h-12 cursor-pointer animate-bounce"
+                className="w-12 h-12 text-black cursor-pointer animate-bounce"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="#d4d4d4"
+                stroke="currentColor"
             >
                 <path
                     strokeLinecap="round"

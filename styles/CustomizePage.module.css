@@ -1,4 +1,4 @@
-.blue-title {
+/* .blue-title {
     font-size: 2.75rem;
     line-height: 1;
     background-image: linear-gradient(
@@ -10,7 +10,7 @@
     background-clip: text;
     animation: animatedGradient 6s ease infinite;
     background-size: 200% 200%;
-}
+} */
 
 .progress-bar {
     animation: customizePageProgressbar 7s infinite linear;

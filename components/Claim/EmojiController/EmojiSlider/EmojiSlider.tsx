@@ -52,7 +52,7 @@ const EmojiSlider = () => {
             <div
                 ref={viewport}
                 tabIndex={1}
-                className={`flex items-center justify-start w-full mb-6 overflow-x-auto ${styles["emoji-slider"]} EmojiSlider`}
+                className={`flex items-center justify-start w-full mb-2 overflow-x-auto ${styles["emoji-slider"]} EmojiSlider`}
             >
                 <div className={`flex items-center justify-start`}>
                     {searchString.length > 1 ? (

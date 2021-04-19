@@ -8,8 +8,8 @@ import styles from "../../../styles/CustomizePage.module.css";
 
 const SlideMessages = [
     <p>
-        Customize your page
-        <br /> with a template
+        Choose from our range of
+        <br /> professional templates
     </p>,
     <p>
         Customize your page
@@ -53,7 +53,9 @@ const CustomizePage = () => {
                         classNames="fade"
                         timeout={200}
                     >
-                        <h1 className={`font-black ${styles["blue-title"]}`}>
+                        <h1
+                            className={`font-bold text-white text-5xl ${styles["blue-title"]}`}
+                        >
                             {SlideMessages[slideIndex]}
                         </h1>
                     </CSSTransition>

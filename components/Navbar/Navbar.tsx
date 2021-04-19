@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import Link from "next/link";
 import BaseLink from "../BaseLink";
 import styles from "../../styles/Navbar.module.css";
+import { useWeb3React } from "@web3-react/core";
+import { injected } from "../../web3/connectors";
 
 const Navbar = () => {
+    const [isHovering, setIsHovering] = useState(false);
+
+    const { activate, account, deactivate } = useWeb3React();
+
     return (
         <div
             className="flex justify-between w-11/12 animate-fade-in-up"
@@ -13,38 +19,60 @@ const Navbar = () => {
             <div className="flex items-center">
                 <BaseLink href="/">
                     <a
-                        className={`text-4xl font-black transition-opacity bg-clip-text ${styles["yellow-title"]} hover:opacity-60`}
+                        className={`transition-opacity flex items-center hover:opacity-60`}
                     >
-                        MyMoj.is
+                        <img
+                            src="/Logos/Emoji@.svg"
+                            style={{ height: "75px" }}
+                        />
                     </a>
                 </BaseLink>
             </div>
             <div className="flex items-center">
                 <BaseLink href="/claim">
                     <a
-                        className={`mr-10 text-xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
+                        className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
                     >
-                        Claim
+                        claim
                     </a>
                 </BaseLink>
                 <BaseLink href="/about">
                     <a
-                        className={`mr-10 text-xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
+                        className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
                     >
-                        About
+                        mission
                     </a>
                 </BaseLink>
-                <BaseLink href="/login">
-                    <a
-                        className={`flex items-center py-3 text-xl font-black transition bg-white rounded-lg shadow-xl px-7 ${styles["login-button"]}`}
+                {/* <BaseLink href="/login"> */}
+
+                {account ? (
+                    <div
+                        onClick={deactivate}
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold rounded-xl px-7 ${styles["login-button"]}`}
                     >
                         <p
-                            className={`transition-opacity bg-clip-text  ${styles["login-text"]}`}
+                            className={`transition-opacity  ${styles["login-text"]}`}
+                        >
+                            {isHovering
+                                ? "Logout"
+                                : `${account.substr(0, 10)}...`}
+                        </p>
+                    </div>
+                ) : (
+                    <div
+                        onClick={() => activate(injected)}
+                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold transition rounded-xl px-7 ${styles["login-button"]}`}
+                    >
+                        <p
+                            className={`transition-opacity ${styles["login-text"]}`}
                         >
                             Login
                         </p>
-                    </a>
-                </BaseLink>
+                    </div>
+                )}
+                {/* </BaseLink> */}
             </div>
         </div>
     );

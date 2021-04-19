@@ -10,6 +10,7 @@ module.exports = {
                 sans: ["Epilogue"],
             },
             colors: {
+                emojiAtYellow: "#FFFF0F",
                 mymojisBg: "#F8FAFD",
                 mymojisDarkText: "#1D2024",
                 mymojisBlueText: "#003d71",

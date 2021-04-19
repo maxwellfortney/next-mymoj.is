@@ -3,6 +3,10 @@ import EmojiTopDisplay from "../components/Claim/EmojiTopDisplay/EmojiTopDisplay
 import EmojiSlider from "../components/Claim/EmojiController/EmojiController";
 import { Emoji } from "../types/Emoji";
 import styles from "../styles/Claim.module.css";
+import { CSSTransition } from "react-transition-group";
+import BaseNFT from "../constants/baseNFT";
+import CustomizeNFT from "../components/Claim/CustomizeNFT/CustomizeNFT";
+import ChoosePageType from "../components/Claim/ChoosePageType/ChoosePageType";
 
 export default function Claim() {
     const [searchString, setSearchString] = useState("");
@@ -13,18 +17,15 @@ export default function Claim() {
     const [sliderScrollPos, setSliderScrollPos] = useState(0);
     const [sliderScrollBooster, setSliderScrollBooster] = useState();
 
-    const [isAvailable, setIsAvailable] = useState(false); // Psuedo toggle if emojiString is sold or not
+    const [isAvailable, setIsAvailable] = useState(true); // Psuedo toggle if emojiString is sold or not
+    const [isCustomizeNFTOpen, setIsCustomizeNFTOpen] = useState(false);
+
+    const [isChoosePageTypeOpen, setIsChoosePageTypeOpen] = useState(false);
 
     return (
         <div
-            className={`flex flex-col items-center justify-end w-full ${styles["Claim"]} animate-fade-in-up`}
+            className={`flex flex-col items-center justify-start w-full ${styles["Claim"]} animate-fade-in-up`}
         >
-            <h1 className="text-4xl font-black text-mymojisDarkText">
-                Claim your MyMojis
-            </h1>
-            <p className="font-semibold text-mymojisBlueText">
-                Pick at least 1 emoji
-            </p>
             <EmojiContext.Provider
                 value={
                     {
@@ -40,11 +41,43 @@ export default function Claim() {
                         setIsAvailable,
                         searchActiveIndex,
                         setSearchActiveIndex,
+                        isCustomizeNFTOpen,
+                        setIsCustomizeNFTOpen,
+                        isChoosePageTypeOpen,
+                        setIsChoosePageTypeOpen,
                     } as any
                 }
             >
-                <EmojiTopDisplay />
-                <EmojiSlider />
+                <CSSTransition
+                    in={isCustomizeNFTOpen}
+                    classNames="fade"
+                    timeout={250}
+                    unmountOnExit
+                >
+                    <CustomizeNFT />
+                </CSSTransition>
+
+                <CSSTransition
+                    in={isChoosePageTypeOpen}
+                    classNames="fade"
+                    timeout={250}
+                    unmountOnExit
+                >
+                    <ChoosePageType />
+                </CSSTransition>
+
+                {isCustomizeNFTOpen || isChoosePageTypeOpen ? null : (
+                    <>
+                        <h1 className="text-4xl font-black text-black">
+                            Claim your MyMojis
+                        </h1>
+                        <p className="font-normal text-black">
+                            Pick at least 1 emoji
+                        </p>
+                        <EmojiTopDisplay />
+                        <EmojiSlider />
+                    </>
+                )}
             </EmojiContext.Provider>
         </div>
     );
