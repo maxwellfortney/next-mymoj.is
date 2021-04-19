@@ -106,19 +106,23 @@ body {
     color: #ffff0f !important;
 }
 
+* {
+    scrollbar-color: #ffff0f black;
+    scrollbar-width: thin;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #ffff0f;
-    border-radius: 999px;
+    background: rgb(0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    background: rgb(0, 0, 0);
+    background: #ffff0f;
 }
 
 *::placeholder {

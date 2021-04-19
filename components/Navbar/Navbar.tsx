@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <div
             className="flex justify-between w-11/12 animate-fade-in-up"
-            style={{ height: "115px", minHeight: "115px" }}
+            style={{ height: "115px", minHeight: "115px", zIndex: 1 }}
         >
             <div className="flex items-center">
                 <BaseLink href="/">
@@ -31,12 +31,12 @@ const Navbar = () => {
             </div>
             <div className="flex items-center md:hidden">
                 <img
-                    className="transition-opacity  hover:opacity-70"
+                    className="transition-opacity hover:opacity-70"
                     src="/Icons/menu.png"
                     style={{ height: "45px" }}
                 />
             </div>
-            <div className="items-center hidden md:flex">
+            <div className="items-center hidden md:flex text-emojiAtYellow">
                 <BaseLink href="/claim">
                     <a
                         className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
@@ -71,7 +71,7 @@ const Navbar = () => {
                 ) : (
                     <div
                         onClick={() => activate(injected)}
-                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold transition rounded-xl px-7 ${styles["login-button"]}`}
+                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold transition rounded-xl px-12 ${styles["login-button"]}`}
                     >
                         <p
                             className={`transition-opacity ${styles["login-text"]}`}
