@@ -19,16 +19,24 @@ const Navbar = () => {
             <div className="flex items-center">
                 <BaseLink href="/">
                     <a
-                        className={`transition-opacity flex items-center hover:opacity-60`}
+                        className={`transition-opacity flex-none flex items-center hover:opacity-60`}
                     >
                         <img
+                            className="flex-none"
                             src="/Logos/Emoji@.svg"
-                            style={{ height: "75px" }}
+                            style={{ height: "70px" }}
                         />
                     </a>
                 </BaseLink>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center md:hidden">
+                <img
+                    className="transition-opacity  hover:opacity-70"
+                    src="/Icons/menu.png"
+                    style={{ height: "45px" }}
+                />
+            </div>
+            <div className="items-center hidden md:flex">
                 <BaseLink href="/claim">
                     <a
                         className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}

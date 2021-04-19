@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Emoji from "../../Emoji/Emoji";
 import styles from "../../../styles/MyMojisExample.module.css";

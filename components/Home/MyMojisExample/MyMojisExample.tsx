@@ -30,10 +30,12 @@ const MyMojisExample = () => {
     return (
         <>
             <div
-                className={`flex items-center justify-between w-3/4 mt-12 ${styles["container"]} animate-fade-in-up`}
+                className={`flex items-center justify-between w-full mt-12 ${styles["container"]} animate-fade-in-up`}
             >
                 <div className="flex-1 invisible" />
-                <div className={`grid flex-none gap-4 ${styles["main"]}`}>
+                <div
+                    className={`grid flex-none gap-2 lg:gap-4 ${styles["main"]}`}
+                >
                     {currentMyMoji && currentMyMoji?.length > 0
                         ? currentMyMoji?.map((emoji, i) => {
                               return (

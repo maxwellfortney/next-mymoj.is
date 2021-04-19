@@ -15,7 +15,7 @@ export default function Home() {
             >
                 <div className="flex flex-col animate-fade-in-up">
                     <h1
-                        className={`text-6xl font-black text-left ${styles["main-title"]}`}
+                        className={`text-5xl md:text-6xl font-black text-left ${styles["main-title"]}`}
                     >
                         We believe in a<br /> decentralized and
                         <br /> open future.
