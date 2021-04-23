@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import BaseNFT from "../../../constants/baseNFT";
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 
 import GradientOption from "./GradientOption";
 import { GradientOptions } from "../../../constants/gradientOptions";
@@ -8,6 +8,7 @@ import styles from "../../../styles/CustomizeNFT.module.css";
 import UserCustomOption from "./UserCustomOption";
 import { ChromePicker, ColorResult } from "react-color";
 import { CSSTransition } from "react-transition-group";
+import fleekStorage from "@fleekhq/fleek-storage-js";
 
 const CustomizeNFT = () => {
     const {
@@ -64,6 +65,7 @@ const CustomizeNFT = () => {
         console.log(serializedSVG);
 
         const blob = new Blob([serializedSVG], { type: "image/svg+xml" });
+        console.log(blob.type);
         console.log(blob);
 
         let formData = new FormData();
@@ -77,6 +79,18 @@ const CustomizeNFT = () => {
                 .join("")}.svg`
         );
 
+        const uploadedFile = await fleekStorage.upload({
+            apiKey: "O1w2bLBPvhameLoWJ7sz2Q==",
+            apiSecret: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
+            key: `${inputEmojiArr
+                .map((emoji: any) => {
+                    return emoji.symbol;
+                })
+                .join("")}.svg`,
+            data: blob,
+        });
+
+        console.log(uploadedFile);
         // const pinRes = await fetch(
         //     "https://api.pinata.cloud/pinning/pinFileToIPFS",
         //     {

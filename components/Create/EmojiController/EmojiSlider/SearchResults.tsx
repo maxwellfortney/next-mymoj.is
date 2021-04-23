@@ -1,5 +1,5 @@
 import SelectEmoji from "./SelectEmoji";
-import { EmojiContext } from "../../../../pages/claim";
+import { EmojiContext } from "../../../../pages/create";
 import { useContext } from "react";
 
 function calculateCols(length: number) {

@@ -18,8 +18,8 @@ export default function Redirect() {
         );
 
         router.basePath = baseURL;
-        if (window.location.href.includes("claim")) {
-            router.replace("claim", baseURL + "claim");
+        if (window.location.href.includes("create")) {
+            router.replace("create", baseURL + "create");
         } else if (window.location.href.includes("about")) {
             router.replace("about", baseURL + "about");
         } else {

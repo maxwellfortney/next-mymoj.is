@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { EmojiContext } from "../../../../pages/claim";
+import { EmojiContext } from "../../../../pages/create";
 import ScrollContainer from "react-indiana-drag-scroll";
 import styles from "../../../../styles/Claim.module.css";
 

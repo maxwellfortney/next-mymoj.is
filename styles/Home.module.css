@@ -4,30 +4,13 @@
 
 .main-container {
     height: calc(100vh - 115px);
+    max-height: calc(100vh - 115px) !important;
+    /* min-height: 775px; */
 }
 
-/* .main-container::after {
-    content: "";
-    width: 100vw;
-    height: 10vh;
-    background: linear-gradient(to bottom, #ffff0f, #000000);
-    position: absolute;
-    top: 100%;
-} */
-
-/* .main-title {
-    font-size: 55px;
-    line-height: 1;
-    background-image: linear-gradient(
-        142deg,
-        rgb(49, 160, 255) 0%,
-        rgb(0, 85, 211) 100%
-    );
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: animatedGradient 10s ease infinite;
-    background-size: 200% 200%;
-} */
+.create-button:hover p:last-of-type {
+    margin-left: 1.5rem;
+}
 
 @keyframes animatedGradient {
     0% {
@@ -41,6 +24,24 @@
     }
 }
 
-/* .sub-title {
-    color: #003d71;
-} */
+.psuedo-element::after {
+    content: "";
+}
+
+.card-0 {
+    transform: translate(2.5rem, 2.5rem);
+    z-index: 4;
+}
+
+.card-1 {
+    /* transform: translate(3vh, 3vh); */
+    z-index: 3;
+}
+.card-2 {
+    transform: translate(-2.5rem, -2.5rem);
+    z-index: 2;
+}
+.card-3 {
+    /* transform: translate(1vh, 1vh); */
+    z-index: 1;
+}

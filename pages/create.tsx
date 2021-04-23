@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
-import EmojiTopDisplay from "../components/Claim/EmojiTopDisplay/EmojiTopDisplay";
-import EmojiSlider from "../components/Claim/EmojiController/EmojiController";
+import EmojiTopDisplay from "../components/Create/EmojiTopDisplay/EmojiTopDisplay";
+import EmojiSlider from "../components/Create/EmojiController/EmojiController";
 import { Emoji } from "../types/Emoji";
 import styles from "../styles/Claim.module.css";
 import { CSSTransition } from "react-transition-group";
 import BaseNFT from "../constants/baseNFT";
-import CustomizeNFT from "../components/Claim/CustomizeNFT/CustomizeNFT";
-import ChoosePageType from "../components/Claim/ChoosePageType/ChoosePageType";
+import CustomizeNFT from "../components/Create/CustomizeNFT/CustomizeNFT";
+import ChoosePageType from "../components/Create/ChoosePageType/ChoosePageType";
 
 export default function Claim() {
     const [searchString, setSearchString] = useState("");
@@ -69,7 +69,7 @@ export default function Claim() {
                 {isCustomizeNFTOpen || isChoosePageTypeOpen ? null : (
                     <>
                         <h1 className="text-4xl font-black text-black">
-                            Claim your MyMojis
+                            Create your MyMojis
                         </h1>
                         <p className="font-normal text-black">
                             Pick at least 1 emoji

@@ -1,6 +1,6 @@
 import Emoji from "../../../Emoji/Emoji";
 import styles from "../../../../styles/Claim.module.css";
-import { EmojiContext } from "../../../../pages/claim";
+import { EmojiContext } from "../../../../pages/create";
 import { useContext, useEffect } from "react";
 
 interface SelectEmojiProps {

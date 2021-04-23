@@ -7,6 +7,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { useEagerConnect, useInactiveListener } from "../web3/hooks";
 import { injected, network } from "../web3/connectors";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer/Footer";
 
 function getLibrary(provider: any, connector: any) {
     const library = new Web3Provider(provider);
@@ -63,6 +64,7 @@ function MyApp({ Component, pageProps }: any) {
             {/* <ChainId /> */}
             <Navbar />
             <Component {...pageProps} />
+            <Footer />
         </div>
     );
 }

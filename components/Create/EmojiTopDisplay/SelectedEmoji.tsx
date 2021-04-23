@@ -1,6 +1,6 @@
 import Emoji from "../../Emoji/Emoji";
 import { useContext, useEffect, useState } from "react";
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import styles from "../../../styles/Claim.module.css";

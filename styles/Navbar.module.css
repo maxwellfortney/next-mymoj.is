@@ -1,5 +1,5 @@
 .login-button {
-    border: 6px solid #ffff0f;
+    border: 6px solid;
 }
 
 .login-button:hover {
@@ -20,4 +20,31 @@
     100% {
         background-position: 10% 0%;
     }
+}
+
+.link {
+    position: relative;
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: -6px;
+    left: 1px;
+    width: 0;
+    border-bottom: 4px solid #ffff0f;
+}
+
+.link::after {
+    transition: all 0.2s linear;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+.link-active::after {
+    width: 100%;
+    transition: all 0.2s linear;
 }

@@ -11,7 +11,7 @@ import {
 } from "../../../../constants/emojiData";
 import styles from "../../../../styles/Claim.module.css";
 import CategoryMatrix from "./CategoryMatrix";
-import { EmojiContext } from "../../../../pages/claim";
+import { EmojiContext } from "../../../../pages/create";
 import { useContext, useEffect } from "react";
 import { useScrollBoost } from "react-scrollbooster";
 

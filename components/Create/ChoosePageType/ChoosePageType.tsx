@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 
 const ChoosePageType = () => {
     const {

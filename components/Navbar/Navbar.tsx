@@ -5,16 +5,23 @@ import BaseLink from "../BaseLink";
 import styles from "../../styles/Navbar.module.css";
 import { useWeb3React } from "@web3-react/core";
 import { injected } from "../../web3/connectors";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+    const { pathname } = useRouter();
     const [isHovering, setIsHovering] = useState(false);
 
     const { activate, account, deactivate } = useWeb3React();
 
     return (
         <div
-            className="flex justify-between w-11/12 animate-fade-in-up"
-            style={{ height: "115px", minHeight: "115px", zIndex: 1 }}
+            className="flex justify-between w-11/12 antialiased animate-fade-in-up mix-blend-difference"
+            style={{
+                height: "115px",
+                minHeight: "115px",
+                zIndex: 2,
+                backgroundColor: "#000000",
+            }}
         >
             <div className="flex items-center">
                 <BaseLink href="/">
@@ -23,7 +30,7 @@ const Navbar = () => {
                     >
                         <img
                             className="flex-none"
-                            src="/Logos/Emoji@.svg"
+                            src="/Logos/Emoji@_Yellow.svg"
                             style={{ height: "70px" }}
                         />
                     </a>
@@ -36,17 +43,31 @@ const Navbar = () => {
                     style={{ height: "45px" }}
                 />
             </div>
-            <div className="items-center hidden md:flex text-emojiAtYellow">
-                <BaseLink href="/claim">
+            <div
+                className={`items-center hidden md:flex text-emojiAtYellow antialiased`}
+            >
+                <BaseLink href="/create">
                     <a
-                        className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
+                        className={`mr-10 text-2xl font-semibold transition-opacity ${
+                            styles["link"]
+                        } ${
+                            pathname.includes("create")
+                                ? `${styles["link-active"]}`
+                                : ""
+                        } hover:opacity-60`}
                     >
-                        claim
+                        create
                     </a>
                 </BaseLink>
-                <BaseLink href="/about">
+                <BaseLink href="/mission">
                     <a
-                        className={`mr-10 text-2xl font-semibold transition-opacity ${styles["link"]} hover:opacity-60`}
+                        className={`mr-10 text-2xl font-semibold transition-opacity ${
+                            styles["link"]
+                        } ${
+                            pathname.includes("mission")
+                                ? `${styles["link-active"]}`
+                                : ""
+                        } hover:opacity-60`}
                     >
                         mission
                     </a>
@@ -71,7 +92,13 @@ const Navbar = () => {
                 ) : (
                     <div
                         onClick={() => activate(injected)}
-                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold transition rounded-xl px-12 ${styles["login-button"]}`}
+                        className={`cursor-pointer flex items-center py-2.5 text-xl font-semibold transition-all rounded-xl px-12 ${
+                            styles["login-button"]
+                        } ${
+                            pathname.includes("create")
+                                ? "border-black"
+                                : "border-emojiAtYellow"
+                        }`}
                     >
                         <p
                             className={`transition-opacity ${styles["login-text"]}`}

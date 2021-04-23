@@ -1,4 +1,4 @@
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 import { useContext, useEffect, useState } from "react";
 import { calculateFlowScore } from "../../../constants/flowScore";
 import NumberEasing from "./NumberEasing";

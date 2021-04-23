@@ -1,6 +1,6 @@
 import EmojiSlider from "./EmojiSlider/EmojiSlider";
 import CategorySelector from "./CategorySelector/CategorySelector";
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 import { useContext, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 

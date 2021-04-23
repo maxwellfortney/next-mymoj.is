@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { ValidEmojis } from "../../../constants/emojiData";
-import { EmojiContext } from "../../../pages/claim";
+import { EmojiContext } from "../../../pages/create";
 import styles from "../../../styles/Claim.module.css";
 import { Emoji as EmojiType } from "../../../types/Emoji";
 import PickerResults from "./PickerResults";
