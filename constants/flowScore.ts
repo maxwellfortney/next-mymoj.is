@@ -1,5 +1,30 @@
+//import Emoji from "../components/Emoji/Emoji";
 import { Emoji } from "../types/Emoji";
 import { frequencyTierDict } from "./emojiData";
+
+function isMatch(p1: number[], p2: Emoji[]): boolean {
+    if(p1.length != p2.length) return false;
+    let table: { [key: number]: String } = {};
+    for(let i = 0; i < p1.length; i++) {
+        if(p1[i] in table) {
+            if(table[p1[i]] != p2[i].symbol) return false;
+        } else {
+            table[p1[i]] = p2[i].symbol;
+        }
+    }
+    return true;
+}
+
+function freq(x: Emoji): number {
+    return (frequencyTierDict as any)[x.symbol];
+}
+
+// Use when the value of the configuration is more
+// important than the value of its constituent emojis.
+function clamp(x: number): number {
+    if(x == 0) return 0;
+    return 3*Math.log(x);
+}
 
 function getRepetitions(a: Emoji[]) {
     if(a.length <= 0) return {};
@@ -26,59 +51,113 @@ function getRepetitions(a: Emoji[]) {
 
 function calculateFlowScore5(a: Emoji[]) {
     let score = 100;
-    let rt = getRepetitions(a);
-    for (let i = 0; i < a.length; i++) {
-        if (rt[a[i].symbol] == undefined) {
-            score -= 2 * (frequencyTierDict as any)[a[0].symbol];
-        } else {
-            score -= (2/rt[a[i].symbol]) * (frequencyTierDict as any)[a[0].symbol];
-        }
+    // XXXXX -> -r
+    if(isMatch([1, 1, 1, 1, 1], a)) {
+        score -= clamp(freq(a[0]));
+    // XXYXX -> -2r
+    } else if(isMatch([1, 1, 2, 1, 1], a)) {
+        score -= freq(a[0]);
+        score -= freq(a[2]);
+    // XYYYX -> 2r
+    } else if(isMatch([1, 2, 2, 2, 1], a)) {
+        score -= freq(a[0]);
+        score -= freq(a[1]);
+    // XYZYX -> -2.5r
+    } else if(isMatch([1, 2, 3, 2, 1], a)) {
+        score -= 0.5*freq(a[0]);
+        score -= freq(a[1]);
+        score -= freq(a[2]);
+    // XXXYY -> -3r
+    } else if(isMatch([1, 1, 1, 2, 2], a)) {
+        score -= 2*freq(a[0]);
+        score -= freq(a[3]);
+    // XXYYY -> -3r
+    } else if(isMatch([1, 1, 2, 2, 2], a)) {
+        score -= freq(a[0]);
+        score -= 2*freq(a[2]);
+    // XYZAB -> -5r
+    } else {
+        score -= freq(a[0]);
+        score -= freq(a[1]);
+        score -= freq(a[2]);
+        score -= freq(a[3]);
+        score -= freq(a[4]);
+
     }
     return score;
 }
 
 function calculateFlowScore4(a: Emoji[]) {
     let score = 100;
-    let rt = getRepetitions(a);
-    for(let i = 0; i < a.length; i++) {
-        if(rt[a[i].symbol] == undefined) {
-            score -= 2*(frequencyTierDict as any)[a[0].symbol];
-        } else {
-            score -= (1/rt[a[i].symbol])*(frequencyTierDict as any)[a[0].symbol];
-        }
+    // XXXX -> -r
+    if(isMatch([1, 1, 1, 1], a)) {
+        score -= clamp(freq(a[0]));
+    // XYYX -> -2r
+    } else if(isMatch([1, 2, 2, 1], a)) {
+        score -= freq(a[0]);
+        score -= freq(a[1]);
+    // XYYZ -> 3r
+    } else if(isMatch([1, 2, 2, 3], a)) {
+        score -= freq(a[0]);
+        score -= freq(a[1]);
+        score -= freq(a[3]);
+    // XYYY|XXXY -> 3r
+    } else if(isMatch([1, 2, 2, 2], a)) {
+        score -= freq(a[0]);
+        score -= 2*freq(a[1]);
+    } else if(isMatch([1, 1, 1, 2], a)) {
+        score -= freq(a[3]);
+        score -= 2*freq(a[0]);
+    // XYZA -> 4r
+    } else {
+        score -= freq(a[0]);
+        score -= freq(a[1]);
+        score -= freq(a[2]);
+        score -= freq(a[3]);
     }
     return score;
 }
 
 function calculateFlowScore3(a: Emoji[]) {
     let score = 100;
-    if (a[0].symbol == a[1].symbol && a[0].symbol == a[2].symbol) {
-        score -= 2*(frequencyTierDict as any)[a[0].symbol];
-    } else if(a[0].symbol == a[2].symbol) { // if bookend
-        score -= 2*(frequencyTierDict as any)[a[0].symbol];
-        score -= 2*(frequencyTierDict as any)[a[1].symbol];
+    // XXX -> -r
+    if(isMatch([1, 1, 1], a)) {
+        score -= clamp(freq(a[0]));
+    // XYX -> -1.5r
+    } else if(isMatch([1, 2, 1], a)) {
+        score -= 0.75*freq(a[0]);
+        score -= 0.75*clamp(freq(a[1]));
+    // XXY -> -2r
+    // XYZ -> -3r
     } else {
-        score -= 2*(frequencyTierDict as any)[a[0].symbol];
-        score -= 1*(frequencyTierDict as any)[a[1].symbol];
-        score -= 2*(frequencyTierDict as any)[a[2].symbol];
+        let seen: String[] = [];
+        for(let i = 0; i < a.length; i++) {
+            if(!seen.includes(a[i].symbol)) {
+                score -= freq(a[i]);
+            }
+            seen.push(a[i].symbol);
+        }
     }
     return score;
 }
 
 function calculateFlowScore2(a: Emoji[]) {
     let score = 100;
-    if (a[0].symbol == a[1].symbol) {
-        score -= 2*(frequencyTierDict as any)[a[0].symbol];
+    // XX -> -r
+    if(isMatch([1, 1], a)) {
+        score -= clamp(freq(a[0]));
+    // XY -> -1.5r
     } else {
-        score -= 2*(frequencyTierDict as any)[a[0].symbol];
-        score -= 2*(frequencyTierDict as any)[a[1].symbol];
+        score -= 0.75*clamp(freq(a[0]));
+        score -= 0.75*clamp(freq(a[1]));
     }
     return score;
 }
 
 function calculateFlowScore1(a: Emoji[]) {
     let score = 100;
-    score -= (frequencyTierDict as any)[a[0].symbol];
+    // X -> -0.5r
+    score -= 0.5*clamp(freq(a[0]));
     return score;
 }
 
