@@ -27,10 +27,10 @@ const UserPage = () => {
     return (
         <div className="flex">
             <Head>
-                <title>TEST - {emojiString}</title>
+                <title>TEST - {emojiString ? emojiString : ""}</title>
                 <meta
                     property="og:title"
-                    content={`TEST - ${emojiString as string}`}
+                    content={`TEST - ${emojiString ? emojiString : ""}`}
                     key="title"
                 />
             </Head>
