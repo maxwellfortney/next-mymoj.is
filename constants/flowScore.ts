@@ -146,10 +146,10 @@ function calculateFlowScore2(a: Emoji[]) {
     // XX -> -r
     if(isMatch([1, 1], a)) {
         score -= clamp(freq(a[0]));
-    // XY -> -1.5r
+    // XY -> -2r
     } else {
-        score -= 0.75*clamp(freq(a[0]));
-        score -= 0.75*clamp(freq(a[1]));
+        score -= freq(a[0]);
+        score -= freq(a[1]);
     }
     return score;
 }
