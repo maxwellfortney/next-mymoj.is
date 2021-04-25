@@ -14,9 +14,9 @@ const UserPage = () => {
         });
 
         console.log(pageData);
-        if (pageData.pageType === "redirect" && pageData.redirectURL) {
-            router.push(pageData.redirectURL);
-        }
+        // if (pageData.pageType === "redirect" && pageData.redirectURL) {
+        //     router.push(pageData.redirectURL);
+        // }
     }
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const UserPage = () => {
     return (
         <div className="flex">
             <Head>
-                <title>{emojiString}</title>
+                <title>TEST - {emojiString}</title>
                 <meta
                     property="og:title"
                     content={emojiString as string}
