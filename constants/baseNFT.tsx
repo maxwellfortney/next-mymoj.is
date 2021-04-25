@@ -176,10 +176,11 @@ const BaseNFT = ({
                 width="100%"
                 height="100%"
                 x="0"
-                style={{
-                    filter:
-                        "drop-shadow(0.5rem 1rem 1rem rgba(50, 50, 93, 0.45))",
-                }}
+                // style={{
+                //     filter:
+                //         "drop-shadow(0.5rem 1rem 1rem rgba(50, 50, 93, 0.45))",
+                // }}
+                filter="drop-shadow(0.5rem 1rem 1rem rgba(50, 50, 93, 0.45))"
             >
                 <rect
                     width={containerInlineMod().width}

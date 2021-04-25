@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group";
 import BaseNFT from "../constants/baseNFT";
 import CustomizeNFT from "../components/Create/CustomizeNFT/CustomizeNFT";
 import ChoosePageType from "../components/Create/ChoosePageType/ChoosePageType";
+import SetupRedirect from "../components/Create/ChoosePageType/SetupRedirect/SetupRedirect";
 
 export default function Claim() {
     const [searchString, setSearchString] = useState("");
@@ -21,6 +22,10 @@ export default function Claim() {
     const [isCustomizeNFTOpen, setIsCustomizeNFTOpen] = useState(false);
 
     const [isChoosePageTypeOpen, setIsChoosePageTypeOpen] = useState(false);
+
+    const [chosenPageType, setChosenPageType] = useState("");
+
+    const [redirectURL, setRedirectURL] = useState("");
 
     return (
         <div
@@ -45,6 +50,10 @@ export default function Claim() {
                         setIsCustomizeNFTOpen,
                         isChoosePageTypeOpen,
                         setIsChoosePageTypeOpen,
+                        chosenPageType,
+                        setChosenPageType,
+                        redirectURL,
+                        setRedirectURL,
                     } as any
                 }
             >
@@ -66,7 +75,18 @@ export default function Claim() {
                     <ChoosePageType />
                 </CSSTransition>
 
-                {isCustomizeNFTOpen || isChoosePageTypeOpen ? null : (
+                <CSSTransition
+                    in={chosenPageType === "redirect"}
+                    classNames="fade"
+                    timeout={250}
+                    unmountOnExit
+                >
+                    <SetupRedirect />
+                </CSSTransition>
+
+                {isCustomizeNFTOpen ||
+                isChoosePageTypeOpen ||
+                chosenPageType.length > 0 ? null : (
                     <>
                         <h1 className="text-4xl font-black text-black">
                             Create your MyMojis

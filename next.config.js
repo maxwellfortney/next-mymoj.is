@@ -9,5 +9,7 @@ module.exports = {
         // FORTMATIC_API_KEY: 'pk_test_A6260FCBAA2EBDFB',
         // MAGIC_API_KEY: 'pk_test_398B82F5F0E88874',
         // PORTIS_DAPP_ID: 'e9be171c-2b7f-4ff0-8db9-327707511ee2'
+        FLEEK_STORAGE_KEY: "O1w2bLBPvhameLoWJ7sz2Q==",
+        FLEEK_STORAGE_SECRET: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
     },
 };

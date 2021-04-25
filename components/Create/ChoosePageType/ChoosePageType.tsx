@@ -8,6 +8,8 @@ const ChoosePageType = () => {
         setIsCustomizeNFTOpen,
         isChoosePageTypeOpen,
         setIsChoosePageTypeOpen,
+        chosenPageType,
+        setChosenPageType,
     } = useContext(EmojiContext);
 
     function createRedirect() {
@@ -53,6 +55,11 @@ const ChoosePageType = () => {
             }
         );
         console.log(pinRes);
+    }
+
+    function goToRedirect() {
+        setChosenPageType("redirect");
+        setIsChoosePageTypeOpen(false);
     }
 
     return (
@@ -107,7 +114,7 @@ const ChoosePageType = () => {
                         </p>
                     </div>
                     <div
-                        onClick={pinToPinata}
+                        onClick={goToRedirect}
                         className="flex items-center justify-center flex-1 w-full mt-5 bg-black cursor-pointer rounded-3xl yellow-on-hover "
                     >
                         <p className="p-2 text-xl font-black text-center text-white transition-colors md:text-2xl xl:text-3xl">

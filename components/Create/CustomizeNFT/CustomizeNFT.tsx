@@ -9,6 +9,7 @@ import UserCustomOption from "./UserCustomOption";
 import { ChromePicker, ColorResult } from "react-color";
 import { CSSTransition } from "react-transition-group";
 import fleekStorage from "@fleekhq/fleek-storage-js";
+import { createJSONMetadata } from "../../../constants/emojiAtMetadata";
 
 const CustomizeNFT = () => {
     const {
@@ -51,11 +52,13 @@ const CustomizeNFT = () => {
     }
 
     async function pinSVG() {
-        var SVGDomElement = document.querySelector(
-            "#CustomNFTSVG"
-        ) as HTMLElement;
+        var SVGDomElement = document
+            .querySelector("#CustomNFTSVG")
+            ?.cloneNode(true) as SVGElement;
 
         console.log(SVGDomElement);
+        SVGDomElement.setAttribute("width", "1000px");
+        SVGDomElement.setAttribute("height", "1000px");
 
         // 2. Serialize element into plain SVG
         var serializedSVG = new XMLSerializer().serializeToString(
@@ -63,46 +66,33 @@ const CustomizeNFT = () => {
         );
 
         console.log(serializedSVG);
+        const emojiString = `${inputEmojiArr
+            .map((emoji: any) => {
+                return emoji.symbol;
+            })
+            .join("")}`;
 
-        const blob = new Blob([serializedSVG], { type: "image/svg+xml" });
-        console.log(blob.type);
-        console.log(blob);
-
-        let formData = new FormData();
-        formData.append(
-            "file",
-            blob,
-            `${inputEmojiArr
-                .map((emoji: any) => {
-                    return emoji.symbol;
-                })
-                .join("")}.svg`
-        );
-
-        const uploadedFile = await fleekStorage.upload({
+        const imageBlob = new Blob([serializedSVG], { type: "image/svg+xml" });
+        const uploadedImage = await fleekStorage.upload({
             apiKey: "O1w2bLBPvhameLoWJ7sz2Q==",
             apiSecret: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
-            key: `${inputEmojiArr
-                .map((emoji: any) => {
-                    return emoji.symbol;
-                })
-                .join("")}.svg`,
-            data: blob,
+            key: `${emojiString}/${emojiString}.svg`,
+            data: imageBlob,
         });
+        console.log(uploadedImage);
 
-        console.log(uploadedFile);
-        // const pinRes = await fetch(
-        //     "https://api.pinata.cloud/pinning/pinFileToIPFS",
-        //     {
-        //         method: "POST",
-        //         headers: {
-        //             Authorization:
-        //                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI0YzY2NmFiMi0zNWY3LTRmYmEtODE4Ni02YjRjOTVjOThmM2YiLCJlbWFpbCI6Im1heHdlbGxmb3J0bmV5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2V9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI5NjIzM2FkZTIwYWYwMjcyNTYyMSIsInNjb3BlZEtleVNlY3JldCI6IjQ5NTBiMTc3YjdmNGYyM2Q1Y2NlMTViMzg1ZjNiMGE4ZWYwYzhhMjE5ZmU0MmFmYjAyZjZlNGVmOTY4M2FiMDYiLCJpYXQiOjE2MTg1MzMxNzl9.ZwFpQdc8-HXbmKTnaCuAyJfQfdgb1V7fNQHgZfKnUTg",
-        //         },
-        //         body: formData,
-        //     }
-        // );
-        // console.log(pinRes);
+        const jsonData = createJSONMetadata(emojiString, uploadedImage.hash);
+        console.log(jsonData);
+        const metdataBlob = new Blob([JSON.stringify(jsonData)], {
+            type: "application/json",
+        });
+        const uploadedMetadata = await fleekStorage.upload({
+            apiKey: process.env.FLEEK_STORAGE_KEY as string,
+            apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
+            key: `${emojiString}/${emojiString}.json`,
+            data: metdataBlob,
+        });
+        console.log(uploadedMetadata);
 
         goToChoosePageType();
     }

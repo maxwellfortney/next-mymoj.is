@@ -125,11 +125,6 @@ body {
     background: #ffff0f;
 }
 
-*::placeholder {
-    color: black !important;
-    opacity: 1 !important;
-}
-
 .st0 {
     fill: #8a92b2;
 }
