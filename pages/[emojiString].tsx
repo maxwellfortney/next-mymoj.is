@@ -30,7 +30,7 @@ const UserPage = () => {
                 <title>TEST - {emojiString}</title>
                 <meta
                     property="og:title"
-                    content={emojiString as string}
+                    content={`TEST - ${emojiString as string}`}
                     key="title"
                 />
             </Head>
