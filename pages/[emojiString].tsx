@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import fleekStorage from "@fleekhq/fleek-storage-js";
 import { emojiAtPage } from "../constants/emojiAtMetadata";
+import Head from "next/head";
 
 const UserPage = () => {
     const router = useRouter();
@@ -23,7 +24,19 @@ const UserPage = () => {
         getPage();
     }, []);
 
-    return <p>emojiString: {emojiString}</p>;
+    return (
+        <div className="flex">
+            <Head>
+                <title>{emojiString}</title>
+                <meta
+                    property="og:title"
+                    content={emojiString as string}
+                    key="title"
+                />
+            </Head>
+            <p>emojiString: {emojiString}</p>
+        </div>
+    );
 };
 
 export default UserPage;
