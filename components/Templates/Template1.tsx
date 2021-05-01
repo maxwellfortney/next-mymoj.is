@@ -17,6 +17,7 @@ const Template1 = ({
                 <title>
                     {emojiString} | {headline}
                 </title>
+                {bio ? <meta name="description" content={bio} /> : null}
 
                 <meta property="og:type" content="website" />
                 <meta
@@ -29,6 +30,7 @@ const Template1 = ({
                     property="og:url"
                     content={`https://emoji.at/${emojiString}`}
                 />
+                {bio ? <meta property="og:description" content={bio} /> : null}
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta
@@ -40,6 +42,9 @@ const Template1 = ({
                     property="twitter:url"
                     content={`https://emoji.at/${emojiString}`}
                 />
+                {bio ? (
+                    <meta property="twitter:description" content={bio} />
+                ) : null}
             </Head>
             <div className="flex items-center justify-center w-full h-screen bg-white">
                 <div className="flex flex-col w-11/12 h-full md:flex-row">
