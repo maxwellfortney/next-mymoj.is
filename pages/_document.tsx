@@ -17,7 +17,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <script dangerouslySetInnerHTML={{ __html: scriptTxt }} />
+                    {/* <script dangerouslySetInnerHTML={{ __html: scriptTxt }} /> */}
                 </Head>
                 <body>
                     <Main />

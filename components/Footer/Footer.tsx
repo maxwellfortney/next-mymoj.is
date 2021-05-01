@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-full bg-black">
+        <div className="z-10 flex flex-col items-center justify-center w-full bg-black">
             <div className="flex items-center justify-between w-11/12 my-8 text-emojiAtYellow">
                 <div className="flex flex-auto w-3/4 h-full">
                     {/* <img className="h-3/4" src="/Logos/Emoji@_Yellow.svg" /> */}

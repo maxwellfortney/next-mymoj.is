@@ -7,9 +7,34 @@ export function createJSONMetadata(emojiString: string, SVGHash: string) {
     return ret;
 }
 
+export interface link {
+    url: string;
+    title: string;
+    description?: string;
+    icon?: string;
+}
+
+export interface wallet {
+    address: string;
+    type: string;
+}
+
 export interface emojiAtPage {
     pageType: string;
     redirectURL?: string;
+    templateNumber?: number;
+    headline?: string;
+    bio?: string;
+    walletData?: wallet[];
+    linkData?: link[];
+}
+
+export interface templateProps {
+    emojiString: string;
+    headline: string;
+    bio?: string;
+    walletData?: wallet[];
+    linkData?: link[];
 }
 
 export function createPageData(pageType: string, redirectURL?: string) {

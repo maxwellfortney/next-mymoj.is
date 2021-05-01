@@ -1,0 +1,40 @@
+.emojiAtLogo {
+    height: 75px;
+}
+
+.headline {
+    /* animation: flow 3s ease-in-out infinite;
+    background: linear-gradient(-60deg, #904e95, #904e95, #e73c73, #e73c73);
+    background-size: 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+
+    animation: flow 6s infinite alternate;
+    height: auto;
+    word-wrap: break-word;
+    white-space: normal;
+    background-image: linear-gradient(
+        315deg,
+        rgba(240, 0, 143, 0.5),
+        rgba(111, 195, 244, 0.5),
+        rgba(113, 56, 255, 0.5),
+        rgba(254, 186, 39, 0.5)
+    );
+    /* display: block; */
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes flow {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}

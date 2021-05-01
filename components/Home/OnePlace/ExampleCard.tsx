@@ -83,7 +83,7 @@ const ExampleCard = () => {
     return (
         <div
             id="ExampleCard"
-            className={`relative flex w-full lg:w-9/12 ${styles["floating"]} ${
+            className={`relative m-auto flex w-full  ${styles["floating"]} ${
                 styles[`${cardExamples[cardIndex].cardBGClass}`]
             }`}
             style={{
@@ -120,7 +120,7 @@ const ExampleCard = () => {
                         ) : null}
 
                         <p
-                            className={`text-5xl font-black text-white card_text`}
+                            className={`text-4xl font-black text-white card_text`}
                             style={{
                                 transform: "translateZ(10px)",
                                 textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,
@@ -130,7 +130,7 @@ const ExampleCard = () => {
                         </p>
                         <div className="flex flex-col justify-center flex-auto mt-5">
                             <p
-                                className="px-3 py-3 overflow-hidden text-5xl font-black text-white whitespace-normal overflow-ellipsis card_text"
+                                className="px-3 py-3 overflow-hidden text-4xl font-black text-white whitespace-normal overflow-ellipsis card_text"
                                 style={{
                                     transform: "translateZ(10px)",
                                     textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,

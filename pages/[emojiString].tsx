@@ -1,79 +1,191 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import fleekStorage from "@fleekhq/fleek-storage-js";
-import { emojiAtPage } from "../constants/emojiAtMetadata";
+import { emojiAtPage, wallet, link } from "../constants/emojiAtMetadata";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
+import { getWeb3ReactContext, useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+import { testABI } from "../constants/abi";
+import Template1 from "../components/Templates/Template1";
 
-async function getPage() {
-    const pageData: emojiAtPage = await fleekStorage.getFileFromHash({
-        hash: "bafybeie4gvyuu42fgea7g7gbpahy6577lkmbwszbkjmxtskts6naftk6nq",
-    });
+const emojiRegex = require("emoji-regex/RGI_Emoji.js");
 
-    console.log(pageData);
-    return pageData;
+interface UserPageProps {
+    emojiString: string;
+    isAvailable?: boolean;
+    isValidEmojiString?: boolean;
+    isTemplate?: boolean;
+    templateNumber?: number;
+    headline?: string;
+    bio?: string;
+    walletData?: wallet[];
+    linkData?: link[];
+}
+
+async function getPage(emojiString: string) {
+    try {
+        const pageData = await fleekStorage.get({
+            apiKey: process.env.FLEEK_STORAGE_KEY as string,
+            apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
+            key: `/${emojiString}/pageData.json`,
+            getOptions: ["data"],
+        });
+
+        const pageJson = JSON.parse(pageData.data.toString());
+        console.log(pageJson);
+
+        return pageJson as emojiAtPage;
+    } catch (e) {
+        return false;
+    }
+}
+
+async function parseEmojiString(emojiString: string) {
+    const regex = emojiRegex();
+    const parsedString = emojiString.replace(regex, "");
+
+    if (parsedString.length !== 0) {
+        return false;
+    }
+
+    console.log("PARSED: ", emojiString.replace(regex, ""));
+    return true;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    console.log(context);
+    const emojiString = context.params?.emojiString as string;
 
-    console.log(context.params?.emojiString);
+    const isValidEmojiString = await parseEmojiString(emojiString);
 
-    const pageData = await getPage();
+    if (isValidEmojiString) {
+        const pageData = await getPage(emojiString);
 
-    if (
-        pageData.pageType === "redirect" &&
-        pageData.redirectURL &&
-        context.params?.emojiString === "redirectTest"
-    ) {
+        // Page doesnt exists
+        if (pageData === false) {
+            return {
+                props: {
+                    emojiString: emojiString,
+                    isAvailable: true,
+                    isValidEmojiString,
+                },
+            };
+        }
+        // Page is redirect
+        else if (pageData.pageType === "redirect" && pageData.redirectURL) {
+            return {
+                redirect: {
+                    destination: pageData.redirectURL,
+                    permanent: false,
+                },
+            };
+        } else if (
+            pageData.pageType === "template" &&
+            pageData.templateNumber
+        ) {
+            return {
+                props: {
+                    emojiString: emojiString,
+                    isValidEmojiString,
+                    isTemplate: true,
+                    templateNumber: pageData.templateNumber,
+                    headline: pageData.headline,
+                    bio: pageData?.bio ? pageData?.bio : null,
+                    linkData: pageData?.linkData ? pageData?.linkData : null,
+                    walletData: pageData?.walletData
+                        ? pageData?.walletData
+                        : null,
+                },
+            };
+        }
+    } else {
         return {
-            redirect: {
-                destination: pageData.redirectURL,
-                permanent: false,
+            props: {
+                emojiString: emojiString,
+                isValidEmojiString,
             },
         };
     }
 
     return {
-        props: { emojiString: context.params?.emojiString },
+        props: { emojiString: emojiString },
     };
 };
 
-const UserPage = ({ emojiString }: any) => {
+const UserPage = ({
+    emojiString,
+    isAvailable,
+    isValidEmojiString,
+    isTemplate,
+    templateNumber,
+    headline,
+    bio,
+    linkData,
+    walletData,
+}: UserPageProps) => {
     // const router = useRouter();
     // const { emojiString } = router.query;
     console.log(emojiString);
 
-    async function getPage() {
-        const pageData: emojiAtPage = await fleekStorage.getFileFromHash({
-            hash: "bafybeie4gvyuu42fgea7g7gbpahy6577lkmbwszbkjmxtskts6naftk6nq",
-        });
+    if (isTemplate) {
+        return (
+            <>
+                <Head>
+                    <title>Emoji.at | 404</title>
 
-        console.log(pageData);
-        // if (pageData.pageType === "redirect" && pageData.redirectURL) {
-        //     router.push(pageData.redirectURL);
-        // }
+                    <meta
+                        property="og:title"
+                        content={`TEST - ${emojiString ? emojiString : ""}`}
+                        key="title"
+                    />
+                </Head>
+                {templateNumber === 1 && (
+                    <Template1
+                        emojiString={emojiString}
+                        headline={headline as string}
+                        bio={bio}
+                        walletData={walletData}
+                        linkData={linkData}
+                    />
+                )}
+            </>
+        );
+    } else {
+        return (
+            <div className="flex">
+                <Head>
+                    {isValidEmojiString ? (
+                        <title>{`${emojiString}${
+                            isAvailable ? " | Claim now!" : ""
+                        }`}</title>
+                    ) : (
+                        <title>Emoji.at | 404</title>
+                    )}
+
+                    {isValidEmojiString ? (
+                        <meta
+                            property="og:title"
+                            content={`${emojiString}${
+                                isAvailable ? " | Claim now!" : ""
+                            }`}
+                            key="title"
+                        />
+                    ) : (
+                        <meta
+                            property="og:title"
+                            content="Emoji.at | 404"
+                            key="title"
+                        />
+                    )}
+                </Head>
+                {isValidEmojiString ? (
+                    <p>emojiString: {emojiString}</p>
+                ) : (
+                    <p>404: {emojiString}</p>
+                )}
+            </div>
+        );
     }
-
-    useEffect(() => {
-        //👽👽
-        getPage();
-    }, []);
-
-    return (
-        <div className="flex">
-            <Head>
-                <title>{emojiString}</title>
-
-                <meta
-                    property="og:title"
-                    content={`TEST - ${emojiString ? emojiString : ""}`}
-                    key="title"
-                />
-            </Head>
-            <p>emojiString: {emojiString}</p>
-        </div>
-    );
 };
 
 export default UserPage;

@@ -8,6 +8,9 @@ import { useEagerConnect, useInactiveListener } from "../web3/hooks";
 import { injected, network } from "../web3/connectors";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer/Footer";
+import { ethers } from "ethers";
+import { testABI } from "../constants/abi";
+import { useRouter } from "next/router";
 
 function getLibrary(provider: any, connector: any) {
     const library = new Web3Provider(provider);
@@ -16,17 +19,31 @@ function getLibrary(provider: any, connector: any) {
     return library;
 }
 
+async function testStuff(contract: any) {
+    console.log(await contract.emojiStringToPageCID("👽👽"));
+}
+
 function ChainId() {
-    const { chainId } = useWeb3React();
+    const { chainId, library } = useWeb3React();
+
+    console.log(library);
+    const contract = new ethers.Contract(
+        "0x5b239e16a89e7a1679cdd6353bdfd9b900b9c7c2",
+        testABI,
+        library
+    );
+
+    console.log(contract);
+    // testStuff(contract);
 
     return (
-        <>
+        <div className="z-30 p-3 bg-white">
             <span>Chain Id</span>
             <span role="img" aria-label="chain">
                 ⛓
             </span>
             <span>{chainId ?? ""}</span>
-        </>
+        </div>
     );
 }
 
@@ -41,6 +58,8 @@ function MyApp({ Component, pageProps }: any) {
         active,
         error,
     } = useWeb3React<Web3Provider>();
+
+    const { pathname } = useRouter();
 
     // handle logic to recognize the connector currently being activated
     const [activatingConnector, setActivatingConnector] = useState<any>();
@@ -57,14 +76,24 @@ function MyApp({ Component, pageProps }: any) {
     // handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
     useInactiveListener(!triedEager || !!activatingConnector);
 
+    console.log(pathname);
+    console.log(pathname.includes("mission"));
     return (
         <div
             className={`flex flex-col items-center justify-start w-full h-full mx-auto bg-emojiAtYellow`}
         >
             {/* <ChainId /> */}
-            <Navbar />
+            {pathname.includes("create") ||
+            pathname.includes("mission") ||
+            pathname === "/" ? (
+                <Navbar />
+            ) : null}
+
             <Component {...pageProps} />
-            <Footer />
+
+            {pathname.includes("create") || pathname === "/" ? (
+                <Footer />
+            ) : null}
         </div>
     );
 }
