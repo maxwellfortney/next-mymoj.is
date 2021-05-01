@@ -31,6 +31,7 @@ export interface emojiAtPage {
 
 export interface templateProps {
     emojiString: string;
+    metaImage: string;
     headline: string;
     bio?: string;
     walletData?: wallet[];

@@ -5,6 +5,7 @@ import ExampleCard from "../Home/OnePlace/ExampleCard";
 
 const Template1 = ({
     emojiString,
+    metaImage,
     headline,
     bio,
     linkData,
@@ -17,10 +18,27 @@ const Template1 = ({
                     {emojiString} | {headline}
                 </title>
 
+                <meta property="og:type" content="website" />
                 <meta
                     property="og:title"
                     content={`${emojiString} | ${headline}`}
                     key="title"
+                />
+                <meta property="og:image" content={metaImage} />
+                <meta
+                    property="og:url"
+                    content={`https://emoji.at/${emojiString}`}
+                />
+
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta
+                    property="twitter:title"
+                    content={`${emojiString} | ${headline}`}
+                />
+                <meta property="twitter:image" content={metaImage} />
+                <meta
+                    property="twitter:url"
+                    content={`https://emoji.at/${emojiString}`}
                 />
             </Head>
             <div className="flex items-center justify-center w-full h-screen bg-white">

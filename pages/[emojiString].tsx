@@ -13,6 +13,7 @@ const emojiRegex = require("emoji-regex/RGI_Emoji.js");
 
 interface UserPageProps {
     emojiString: string;
+    metaImage: string;
     isAvailable?: boolean;
     isValidEmojiString?: boolean;
     isTemplate?: boolean;
@@ -41,6 +42,21 @@ async function getPage(emojiString: string) {
     }
 }
 
+async function getMetaImage(emojiString: string) {
+    const metaImageData = await fleekStorage.get({
+        apiKey: process.env.FLEEK_STORAGE_KEY as string,
+        apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
+        key: `${emojiString}/${emojiString}.svg`,
+        getOptions: ["publicUrl"],
+    });
+
+    console.log(metaImageData);
+
+    return metaImageData["publicUrl"];
+
+    // return metaImageBuffer.data.toString();
+}
+
 async function parseEmojiString(emojiString: string) {
     const regex = emojiRegex();
     const parsedString = emojiString.replace(regex, "");
@@ -60,6 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     if (isValidEmojiString) {
         const pageData = await getPage(emojiString);
+        const metaImage = await getMetaImage(emojiString);
 
         // Page doesnt exists
         if (pageData === false) {
@@ -86,6 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             return {
                 props: {
                     emojiString: emojiString,
+                    metaImage,
                     isValidEmojiString,
                     isTemplate: true,
                     templateNumber: pageData.templateNumber,
@@ -114,6 +132,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const UserPage = ({
     emojiString,
+    metaImage,
     isAvailable,
     isValidEmojiString,
     isTemplate,
@@ -142,6 +161,7 @@ const UserPage = ({
                 {templateNumber === 1 && (
                     <Template1
                         emojiString={emojiString}
+                        metaImage={metaImage}
                         headline={headline as string}
                         bio={bio}
                         walletData={walletData}
