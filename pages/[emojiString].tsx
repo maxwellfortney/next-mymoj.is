@@ -46,7 +46,7 @@ async function getMetaImage(emojiString: string) {
     const metaImageData = await fleekStorage.get({
         apiKey: process.env.FLEEK_STORAGE_KEY as string,
         apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
-        key: `${emojiString}/${emojiString}.svg`,
+        key: `${emojiString}/${emojiString}.jpg`,
         getOptions: ["publicUrl"],
     });
 
@@ -199,7 +199,10 @@ const UserPage = ({
                     )}
                 </Head>
                 {isValidEmojiString ? (
-                    <p>emojiString: {emojiString}</p>
+                    <div className="flex flex-col items-center justify-center">
+                        <p>emojiString: {emojiString}</p>
+                        <p>Claim now!</p>
+                    </div>
                 ) : (
                     <p>404: {emojiString}</p>
                 )}
