@@ -51,6 +51,28 @@ const CustomizeNFT = () => {
         }
     }
 
+    async function getJPGBlob(serializedSVG: string) {
+        const img = document
+            .querySelector("#CustomNFTSVG")
+            ?.cloneNode(true) as SVGImageElement;
+        img.setAttribute("width", "1000px");
+        img.setAttribute("height", "1000px");
+        console.log(img);
+
+        let canvas = document.createElement("canvas");
+        let ratio = 1;
+        canvas.width = 1000;
+        canvas.height = 1000;
+        let ctx = canvas.getContext("2d");
+        ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
+        try {
+            let data = canvas.toDataURL("image/png");
+            console.log("HHH: ", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async function pinSVG() {
         var SVGDomElement = document
             .querySelector("#CustomNFTSVG")
@@ -72,16 +94,20 @@ const CustomizeNFT = () => {
             })
             .join("")}`;
 
-        const imageBlob = new Blob([serializedSVG], { type: "image/svg+xml" });
-        const uploadedImage = await fleekStorage.upload({
+        const imageSVGBlob = new Blob([serializedSVG], {
+            type: "image/svg+xml",
+        });
+        const uploadedSVGImage = await fleekStorage.upload({
             apiKey: "O1w2bLBPvhameLoWJ7sz2Q==",
             apiSecret: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
             key: `${emojiString}/${emojiString}.svg`,
-            data: imageBlob,
+            data: imageSVGBlob,
         });
-        console.log(uploadedImage);
+        console.log(uploadedSVGImage);
 
-        const jsonData = createJSONMetadata(emojiString, uploadedImage.hash);
+        const jpgBlob = await getJPGBlob(serializedSVG);
+
+        const jsonData = createJSONMetadata(emojiString, uploadedSVGImage.hash);
         console.log(jsonData);
         const metdataBlob = new Blob([JSON.stringify(jsonData)], {
             type: "application/json",

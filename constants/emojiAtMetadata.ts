@@ -16,7 +16,7 @@ export interface link {
 
 export interface wallet {
     address: string;
-    type: string;
+    title: string;
 }
 
 export interface emojiAtPage {
