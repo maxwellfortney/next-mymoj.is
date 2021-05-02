@@ -122,7 +122,7 @@ const PaymentCard = ({ emojiString, title, address }: PaymentCardProps) => {
             </SwitchTransition> */}
 
             <div
-                className={`relative flex flex-col w-full py-5 card_body px-7`}
+                className={`relative flex flex-col w-full py-2 md:py-3.5 lg:py-5 card_body px-1.5 md:px-5 lg:px-7`}
                 style={{ transformStyle: "preserve-3d" }}
             >
                 {cardLogo ? (
@@ -152,7 +152,7 @@ const PaymentCard = ({ emojiString, title, address }: PaymentCardProps) => {
                 )}
 
                 <p
-                    className={`text-3xl xl:text-4xl font-black text-white card_text`}
+                    className={`text-2xl md:text-3xl xl:text-4xl font-black text-white card_text`}
                     style={{
                         transform: "translateZ(10px)",
                         textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,
@@ -162,7 +162,7 @@ const PaymentCard = ({ emojiString, title, address }: PaymentCardProps) => {
                 </p>
                 <div className="flex flex-col justify-center flex-auto mt-5">
                     <p
-                        className="px-3 py-3 overflow-hidden text-3xl font-black text-white whitespace-normal xl:text-4xl overflow-ellipsis card_text"
+                        className="px-3 py-3 overflow-hidden text-2xl font-black text-white whitespace-normal md:text-3xl xl:text-4xl overflow-ellipsis card_text"
                         style={{
                             transform: "translateZ(10px)",
                             textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,

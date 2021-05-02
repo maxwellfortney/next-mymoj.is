@@ -141,7 +141,7 @@ const Template1 = ({
                                             <div className="flex items-center transition-opacity hover:opacity-60">
                                                 {link.icon ? (
                                                     <img
-                                                        className="mr-8"
+                                                        className="mr-5 md:mr-8"
                                                         src={link.icon}
                                                         style={{
                                                             height: "56px",
