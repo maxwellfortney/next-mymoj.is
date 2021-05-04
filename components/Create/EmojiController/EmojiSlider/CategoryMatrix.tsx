@@ -29,7 +29,7 @@ const CategoryMatrix = ({
     return (
         <div
             id={id}
-            className={`grid gap-2 py-6 mr-12 ${isFirst ? "ml-24" : ""} ${
+            className={`grid gap-2 py-3 md:py-6 mr-12 ${isFirst ? "ml-10 md:ml-24" : ""} ${
                 isLast ? "pr-24" : ""
             }`}
             style={{

@@ -42,7 +42,7 @@ const SelectedEmoji = ({ symbol, label, i }: SelectedEmojiProps) => {
                             {...provided.dragHandleProps}
                             onMouseEnter={() => setIsHovering(true)}
                             onMouseLeave={() => setIsHovering(false)}
-                            className={`relative mr-4 text-8xl flex justify-center items-center bg-white shadow-md  ${
+                            className={`relative mr-1 md:mr-2 lg:mr-4 sm:text-8xl flex justify-center items-center bg-white shadow-md  ${
                                 styles["single-emoji-selected"]
                             } ${
                                 styles[

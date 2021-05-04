@@ -102,8 +102,36 @@ const ChoosePageType = () => {
                             </h1>
                             <p className="font-bold text-white">4 total</p>
                         </div>
-                        <div className="flex flex-auto w-full mt-2 bg-white rounded-3xl">
-                            a
+                        <div
+                            className="flex items-center justify-center flex-auto w-full mt-2"
+                            style={{ maxHeight: "calc(100vh - 335px)" }}
+                        >
+                            <div className="flex flex-col items-center w-full h-full overflow-x-hidden overflow-y-auto rounded-3xl">
+                                <video
+                                    autoPlay
+                                    loop
+                                    className="w-11/12 transition-opacity cursor-pointer rounded-3xl hover:opacity-80"
+                                    src="/Videos/template1-new.mkv"
+                                />
+                                <video
+                                    autoPlay
+                                    loop
+                                    className="w-11/12 mt-6 transition-opacity cursor-pointer mt- rounded-3xl hover:opacity-80"
+                                    src="/Videos/template1-new.mkv"
+                                />
+                                <video
+                                    autoPlay
+                                    loop
+                                    className="w-11/12 mt-6 transition-opacity cursor-pointer rounded-3xl hover:opacity-80"
+                                    src="/Videos/template1-new.mkv"
+                                />
+                                <video
+                                    autoPlay
+                                    loop
+                                    className="w-11/12 mt-6 transition-opacity cursor-pointer rounded-3xl hover:opacity-80"
+                                    src="/Videos/template1-new.mkv"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -83,7 +83,7 @@ const ExampleCard = () => {
     return (
         <div
             id="ExampleCard"
-            className={`relative m-auto flex w-full  ${styles["floating"]} ${
+            className={`relative m-auto flex w-full md:w-10/12 lg:w-3/4  ${styles["floating"]} ${
                 styles[`${cardExamples[cardIndex].cardBGClass}`]
             }`}
             style={{
@@ -98,7 +98,7 @@ const ExampleCard = () => {
             <SwitchTransition mode="out-in">
                 <CSSTransition key={cardIndex} classNames="fade" timeout={200}>
                     <div
-                        className={`relative flex flex-col w-full py-5 card_body px-7`}
+                        className={`relative flex flex-col w-full py-2 md:py-3.5 lg:py-5 card_body px-1.5 md:px-5 lg:px-7`}
                         style={{ transformStyle: "preserve-3d" }}
                     >
                         {cardExamples[cardIndex].cardLogo ? (
@@ -120,7 +120,7 @@ const ExampleCard = () => {
                         ) : null}
 
                         <p
-                            className={`text-4xl font-black text-white card_text`}
+                            className={`text-2xl md:text-3xl xl:text-4xl font-black text-white card_text`}
                             style={{
                                 transform: "translateZ(10px)",
                                 textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,
@@ -130,7 +130,7 @@ const ExampleCard = () => {
                         </p>
                         <div className="flex flex-col justify-center flex-auto mt-5">
                             <p
-                                className="px-3 py-3 overflow-hidden text-4xl font-black text-white whitespace-normal overflow-ellipsis card_text"
+                                className="px-3 py-3 overflow-hidden text-2xl font-black text-white whitespace-normal md:text-3xl xl:text-4xl overflow-ellipsis card_text"
                                 style={{
                                     transform: "translateZ(10px)",
                                     textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,
@@ -139,7 +139,7 @@ const ExampleCard = () => {
                                 {cardExamples[cardIndex].address}
                             </p>
                             <p
-                                className="pl-3 text-5xl"
+                                className="pl-3 text-4xl xl:text-5xl"
                                 style={{
                                     transform: "translateZ(10px)",
                                     textShadow: `${-textShadowX}px ${textShadowY}px 6px rgba(0, 0, 0, .8)`,

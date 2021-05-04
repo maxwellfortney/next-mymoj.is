@@ -97,28 +97,28 @@ const CustomizeNFT = () => {
         const imageSVGBlob = new Blob([serializedSVG], {
             type: "image/svg+xml",
         });
-        const uploadedSVGImage = await fleekStorage.upload({
-            apiKey: "O1w2bLBPvhameLoWJ7sz2Q==",
-            apiSecret: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
-            key: `${emojiString}/${emojiString}.svg`,
-            data: imageSVGBlob,
-        });
-        console.log(uploadedSVGImage);
+        // const uploadedSVGImage = await fleekStorage.upload({
+        //     apiKey: "O1w2bLBPvhameLoWJ7sz2Q==",
+        //     apiSecret: "bLfeX2PC/mg6xZQetAlnK65ArM51g20T61MrXiJz9aM=",
+        //     key: `${emojiString}/${emojiString}.svg`,
+        //     data: imageSVGBlob,
+        // });
+        // console.log(uploadedSVGImage);
 
-        const jpgBlob = await getJPGBlob(serializedSVG);
+        // // const jpgBlob = await getJPGBlob(serializedSVG);
 
-        const jsonData = createJSONMetadata(emojiString, uploadedSVGImage.hash);
-        console.log(jsonData);
-        const metdataBlob = new Blob([JSON.stringify(jsonData)], {
-            type: "application/json",
-        });
-        const uploadedMetadata = await fleekStorage.upload({
-            apiKey: process.env.FLEEK_STORAGE_KEY as string,
-            apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
-            key: `${emojiString}/${emojiString}.json`,
-            data: metdataBlob,
-        });
-        console.log(uploadedMetadata);
+        // const jsonData = createJSONMetadata(emojiString, uploadedSVGImage.hash);
+        // console.log(jsonData);
+        // const metdataBlob = new Blob([JSON.stringify(jsonData)], {
+        //     type: "application/json",
+        // });
+        // const uploadedMetadata = await fleekStorage.upload({
+        //     apiKey: process.env.FLEEK_STORAGE_KEY as string,
+        //     apiSecret: process.env.FLEEK_STORAGE_SECRET as string,
+        //     key: `${emojiString}/${emojiString}.json`,
+        //     data: metdataBlob,
+        // });
+        // console.log(uploadedMetadata);
 
         goToChoosePageType();
     }

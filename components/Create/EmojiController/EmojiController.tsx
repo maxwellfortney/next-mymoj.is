@@ -16,7 +16,7 @@ const EmojiController = () => {
                 unmountOnExit
             >
                 <div className="absolute z-10 flex items-center justify-center w-full h-full bg-emojiAtYellow">
-                    <p className="text-3xl">
+                    <p className="text-3xl text-center">
                         You've reached the{" "}
                         <span className="font-bold">maximum length</span>.
                     </p>

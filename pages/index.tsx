@@ -46,28 +46,30 @@ export default function Home() {
                 <div
                     className={`flex flex-col items-center justify-between w-full ${styles["main-container"]}`}
                 >
-                    <div className="flex flex-col items-center justify-start w-11/12 mt-12">
-                        <h1 className="self-start w-11/12 text-6xl font-black lg:w-3/4 mix-blend-difference text-emojiAtYellow lg:text-7xl 2xl:text-8xl">
+                    <div className="flex flex-col items-center justify-start w-11/12 mt-0 md:mt-12">
+                        <h1 className="self-start w-full text-5xl font-black md:text-6xl md:w-11/12 lg:w-3/4 mix-blend-difference text-emojiAtYellow lg:text-7xl 2xl:text-8xl">
                             We believe in a decentralized and open future.
                         </h1>
                         <p
-                            style={{ width: "36.5%" }}
-                            className="self-start pr-5 mt-5 text-xl font-normal text-left lg:text-2xl mix-blend-difference text-emojiAtYellow"
+                            className={`self-start pr-5 mt-5 text-xl font-normal text-left lg:text-2xl mix-blend-difference text-emojiAtYellow ${styles["sub-title"]}`}
                         >
                             Where you truly own what you pay for, and can use
                             and share it however you please.
                         </p>
                     </div>
 
-                    <div className="flex flex-col justify-end flex-auto w-full h-full min-h-0">
+                    <div
+                        className="flex flex-col justify-end flex-auto w-full h-full"
+                        style={{ minHeight: "175px" }}
+                    >
                         <div
-                            className="flex items-center self-end flex-auto min-h-0"
-                            style={{ width: "95.83333%" }}
+                            className="flex items-center self-end flex-auto"
+                            style={{ width: "95.83333%", minHeight: "100px" }}
                         >
-                            <div className="flex flex-col justify-end flex-auto h-1/2">
+                            <div className="flex flex-col justify-end flex-auto mr-5 h-1/2">
                                 <a
                                     href="/create"
-                                    className={`mr-auto flex items-center text-5xl ${styles["create-button"]} border-b-4 border-black`}
+                                    className={`mr-auto flex items-center text-5xl ${styles["create-button"]} mix-blend-difference border-b-4 text-emojiAtYellow border-emojiAtYellow`}
                                 >
                                     <p>Create</p>
                                     <p className="ml-1 text-6xl transition-all">{`>`}</p>
@@ -121,15 +123,18 @@ export default function Home() {
                             className="flex items-center justify-between w-full px-5"
                             style={{ zIndex: 1 }}
                         >
-                            <a
-                                href="https://discord.com"
-                                className="transition-opacity hover:opacity-80"
-                            >
-                                <img
-                                    className="h-16 text-black fill-current"
-                                    src="/Logos/Discord.svg"
-                                />
-                            </a>
+                            <div className="flex-1">
+                                <a
+                                    href="https://discord.com"
+                                    className="transition-opacity hover:opacity-80"
+                                >
+                                    <img
+                                        className="h-16 text-black fill-current"
+                                        src="/Logos/Discord.svg"
+                                    />
+                                </a>
+                            </div>
+
                             <svg
                                 onClick={() =>
                                     window.scrollTo(
@@ -151,14 +156,16 @@ export default function Home() {
                                     d="M19 9l-7 7-7-7"
                                 />
                             </svg>
-                            <div
-                                className={`${styles["psuedo-element"]}`}
-                            ></div>
+                            <div className="flex-1">
+                                <div
+                                    className={`${styles["psuedo-element"]}`}
+                                ></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <OnePlace />
+                </div>                
             </div>
+            <OnePlace />
         </>
     );
 }

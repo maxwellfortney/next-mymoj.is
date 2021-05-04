@@ -1,15 +1,23 @@
 .Home {
-    min-height: calc(100vh - 115px);
+    height: calc(100vh - 115px);
 }
 
 .main-container {
     height: calc(100vh - 115px);
     max-height: calc(100vh - 115px) !important;
-    /* min-height: 775px; */
 }
 
 .create-button:hover p:last-of-type {
     margin-left: 1.5rem;
+}
+.sub-title {
+    width: 36.5%;
+}
+
+@media (max-width: 800px) {
+    .sub-title {
+        width: 90%;
+    }
 }
 
 @keyframes animatedGradient {

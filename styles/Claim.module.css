@@ -1,6 +1,7 @@
 .Claim {
-    height: calc(100vh - 115px);
-    /* min-height: 700px; */
+    min-height: calc(100vh - 115px);
+    /* min-height: 930px; */
+    /* min-height: calc(100vh - 115px); */
 }
 
 .category-selector p {
@@ -110,6 +111,33 @@
     filter: brightness(1.05);
     user-select: none;
     border-radius: 40px;
+}
+
+@media (max-width: 900px) {    
+    .single-emoji-selected {
+        width: 110px;
+        height: 110px;
+        border-radius: 30px;
+        font-size: 4.4rem;
+    }
+}
+
+@media (max-width: 675px) {    
+    .single-emoji-selected {
+        width: 85px;
+        height: 85px;
+        border-radius: 20px;
+        font-size: 3.6rem;
+    }
+}
+
+@media (max-width: 525px) {    
+    .single-emoji-selected {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        font-size: 3rem;
+    }
 }
 
 .delete-selected-button {

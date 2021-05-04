@@ -36,7 +36,7 @@ const PickerResults = () => {
     }, [inputEmojiArr]);
 
     return (
-        <div className="flex items-center justify-center w-full h-1/4">
+        <div className="flex flex-col items-center justify-center w-full md:flex-row h-1/4 md:mb-6">
             <div className="flex items-center justify-end flex-1">
                 <CSSTransition
                     in={inputEmojiArr.length > 0}
@@ -51,7 +51,7 @@ const PickerResults = () => {
                                     ? setIsCustomizeNFTOpen(true)
                                     : null;
                             }}
-                            className={`flex flex-col items-center justify-center px-12 py-4 rounded-full cursor-pointer ${
+                            className={`flex flex-col items-center justify-center px-12 py-2 md:py-4 rounded-full cursor-pointer ${
                                 styles[
                                     `${
                                         isAvailable
@@ -61,12 +61,12 @@ const PickerResults = () => {
                                 ]
                             } ${isAvailable ? "text-white" : "text-white"}`}
                         >
-                            <p className="text-xl font-bold leading-tight whitespace-nowrap">
+                            <p className="text-base font-bold leading-tight md:text-xl whitespace-nowrap">
                                 {isAvailable
                                     ? "Customize Now"
                                     : "This Emoji @ is taken"}
                             </p>
-                            <p className="text-sm font-light leading-tight text-gray-50 whitespace-nowrap">
+                            <p className="text-xs font-light leading-tight md:text-sm text-gray-50 whitespace-nowrap">
                                 {isAvailable
                                     ? "Purchase for 1 ETH"
                                     : "View on OpenSea"}
@@ -81,10 +81,10 @@ const PickerResults = () => {
                 timeout={250}
                 unmountOnExit
             >
-                <div className="flex w-px mx-3 bg-gray-500 md:mx-5 lg:mx-8 h-1/4"></div>
+                <div className="hidden w-px mx-3 bg-gray-500 md:flex md:mx-5 lg:mx-8 h-1/4"></div>
             </CSSTransition>
 
-            <div className="flex items-center flex-1">
+            <div className="flex items-center justify-center flex-1 my-3 mb-0 md:my-0">
                 {flowScore ? (
                     <CSSTransition
                         in={inputEmojiArr.length > 0}
@@ -94,7 +94,7 @@ const PickerResults = () => {
                     >
                         <>
                             <div
-                                className={`flex items-center justify-center font-sans text-2xl font-black bg-white rounded-2xl blur-md relative text-mymojisDarkText ${
+                                className={`flex ml-4 md:ml-0 items-center justify-center font-sans text-2xl font-black bg-white rounded-2xl blur-md relative text-mymojisDarkText ${
                                     styles["flow-score"]
                                 } ${styles[`flow-score-${flowScoreShadow()}`]}`}
                                 style={{
@@ -111,10 +111,10 @@ const PickerResults = () => {
                                 </p>
                             </div>
                             <div className="flex flex-col flex-auto w-full ml-6">
-                                <p className="text-xl font-black text-mymojisDarkText">
+                                <p className="text-lg font-black md:text-xl text-mymojisDarkText">
                                     FLOW SCORE
                                 </p>
-                                <p className="leading-tight">
+                                <p className="text-sm leading-tight md:text-base">
                                     The price is based on its Flow Score,
                                     <br /> which is a measure of its rarity and
                                     uniqueness.

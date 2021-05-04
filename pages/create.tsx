@@ -88,10 +88,10 @@ export default function Claim() {
                 isChoosePageTypeOpen ||
                 chosenPageType.length > 0 ? null : (
                     <>
-                        <h1 className="text-4xl font-black text-black">
-                            Create your MyMojis
+                        <h1 className="w-11/12 text-3xl font-black text-center text-black md:text-4xl">
+                            Create your emoji @
                         </h1>
-                        <p className="font-normal text-black">
+                        <p className="font-normal text-center text-black">
                             Pick at least 1 emoji
                         </p>
                         <EmojiTopDisplay />

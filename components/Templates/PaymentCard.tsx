@@ -75,7 +75,7 @@ const PaymentCard = ({ emojiString, title, address }: PaymentCardProps) => {
         setTextShadowY(text_shadow_y);
 
         card.style.transform = `rotateX(${card_y}deg) rotateY(${card_x}deg)`;
-        card.style.boxShadow = `${-card_x}px ${card_y}px 55px rgba(255, 255, 255, .2)`;
+        card.style.boxShadow = `${-card_x}px ${card_y}px 55px rgba(0, 0, 0, .35)`;
         if (svgLogo) {
             svgLogo.style.filter = `drop-shadow(${-shadow_x}px ${shadow_y}px 4px rgba(0, 0, 0, .4))`;
         }

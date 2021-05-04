@@ -23,7 +23,7 @@ const EmojiTopDisplay = () => {
     }, [inputEmojiArr]);
 
     function handleOnChange(e: any) {
-        setSearchString(e.target.value);
+        setSearchString(e.target.value.toLowerCase());
     }
 
     function handleKeyDown(e: any) {
@@ -149,10 +149,10 @@ const EmojiTopDisplay = () => {
 
     return (
         <>
-            <div className="flex flex-col justify-center flex-auto w-11/12 mt-12">
+            <div className="flex flex-col justify-center flex-auto w-full my-4 ml-1 md:mt-12 md:ml-0 md:w-11/12">
                 <div className="flex items-center justify-start w-full">
                     <svg
-                        className="flex-none h-20 text-black transition-opacity cursor-pointer lg:h-32 hover:opacity-80"
+                        className="flex-none h-10 text-black transition-opacity cursor-pointer sm:h-14 md:h-20 lg:h-32 hover:opacity-80"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -223,7 +223,7 @@ const EmojiTopDisplay = () => {
                             value={searchString}
                             className={`${
                                 inputEmojiArr.length > 0 ? "ml-5" : ""
-                            } w-full overflow-x-visible text-4xl font-bold outline-none md:text-5xl lg:text-6xl ${
+                            } w-full overflow-x-visible text-2xl font-bold outline-none md:text-5xl lg:text-6xl ${
                                 styles["emoji-search-input"]
                             }`}
                             placeholder={
